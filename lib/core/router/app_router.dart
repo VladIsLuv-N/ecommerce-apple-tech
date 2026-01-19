@@ -1,4 +1,5 @@
 import 'package:ecommerce_apple_tech_app/features/auth/presentation/pages/sign_in_page.dart';
+import 'package:ecommerce_apple_tech_app/features/auth/presentation/pages/sign_up_page.dart';
 import 'package:ecommerce_apple_tech_app/features/onboarding/presentation/pages/onboarding_first_page.dart';
 import 'package:ecommerce_apple_tech_app/features/onboarding/presentation/pages/onboarding_layout.dart';
 import 'package:ecommerce_apple_tech_app/features/onboarding/presentation/pages/onboarding_second_page.dart';
@@ -40,6 +41,11 @@ final GoRouter appRouter = GoRouter(
       path: '/signIn',
       name: 'signIn',
       builder: (context, state) => const SignInPage(),
+    ),
+    GoRoute(
+      path: '/signUp',
+      name: 'signUp',
+      builder: (context, state) => const SignUpPage(),
     ),
   ],
 );

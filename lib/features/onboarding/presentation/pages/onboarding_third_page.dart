@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 class OnboardingThirdPage extends StatelessWidget {
@@ -10,23 +11,26 @@ class OnboardingThirdPage extends StatelessWidget {
 
     return Column(
       children: [
-        const Expanded(
+        Expanded(
           child: Center(
-            child: Text(
-              'ThirdStep',
-              style: TextStyle(color: Colors.black, fontSize: 40),
-            ),
+            child: SvgPicture.asset('assets/images/onboarding3.svg'),
           ),
         ),
         Row(
           children: [
-            TextButton(onPressed: () {
-              context.goNamed('signIn');
-            }, child: const Text('Skip')),
+            TextButton(
+              onPressed: () {
+                context.goNamed('signIn');
+              },
+              child: const Text('Skip'),
+            ),
             const Spacer(),
-            ElevatedButton(onPressed: () {
-              context.pop();
-            }, child: const Text('Previous')),
+            ElevatedButton(
+              onPressed: () {
+                context.pop();
+              },
+              child: const Text('Previous'),
+            ),
             const SizedBox(width: 16),
             ElevatedButton(
               onPressed: () {
@@ -38,7 +42,13 @@ class OnboardingThirdPage extends StatelessWidget {
                   theme.colorScheme.onPrimary,
                 ),
               ),
-              child: const Text('Start Shop'),
+              child: const Row(
+                children: [
+                  Text('Start Shop'),
+                  SizedBox(width: 4),
+                  Icon(Icons.arrow_forward_outlined),
+                ],
+              ),
             ),
           ],
         ),

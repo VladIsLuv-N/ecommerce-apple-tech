@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "889199795990",
+    "project_id": "apple-tech-1a094",
+    "storage_bucket": "apple-tech-1a094.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:889199795990:android:90d3d643501f07a9a5fa37",
+        "android_client_info": {
+          "package_name": "com.example.ecommerce_apple_tech_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuXgexX72PBU6w0WUGE5eaFpfxq88K8K0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

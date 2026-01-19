@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 class OnboardingFirstPage extends StatelessWidget {
@@ -10,12 +11,9 @@ class OnboardingFirstPage extends StatelessWidget {
 
     return Column(
       children: [
-        const Expanded(
+         Expanded(
           child: Center(
-            child: Text(
-              'FirstStep',
-              style: TextStyle(color: Colors.black, fontSize: 40),
-            ),
+            child: SvgPicture.asset('assets/images/onboarding1.svg')
           ),
         ),
         Row(

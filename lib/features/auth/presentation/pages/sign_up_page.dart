@@ -5,28 +5,34 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class SignInPage extends StatefulWidget {
-  const SignInPage({super.key});
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
 
   @override
-  State<SignInPage> createState() => _SignInPageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _SignInPageState extends State<SignInPage> {
+class _SignUpPageState extends State<SignUpPage> {
   final emailController = TextEditingController();
+  final nameController = TextEditingController();
+  final phoneController = TextEditingController();
   final passwordController = TextEditingController();
   final emailFocus = FocusNode();
+  final nameFocus = FocusNode();
+  final phoneFocus = FocusNode();
   final passwordFocus = FocusNode();
 
   final _formKey = GlobalKey<FormState>();
 
-  bool _obscurePassword = true;
-
   @override
   void dispose() {
     emailController.dispose();
+    nameController.dispose();
+    phoneController.dispose();
     passwordController.dispose();
     emailFocus.dispose();
+    nameFocus.dispose();
+    phoneFocus.dispose();
     passwordFocus.dispose();
 
     super.dispose();
@@ -48,6 +54,30 @@ class _SignInPageState extends State<SignInPage> {
     return null;
   }
 
+  String? _validateName(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter a name';
+    }
+
+    return null;
+  }
+
+  String? _validatePhone(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter a phone';
+    }
+
+    final RegExp phoneRegex = RegExp(
+      r'^\+?[0-9]{1,3}?[\s.-]?\(?[0-9]{2,3}\)?[\s.-]?[0-9]{3,4}[\s.-]?[0-9]{4}$',
+    );
+
+    if (!phoneRegex.hasMatch(value)) {
+      return 'Please enter a valid phone number';
+    }
+
+    return null;
+  }
+
   String? _validatePassword(String? value) {
     if (value == null || value.isEmpty) {
       return 'Please enter a password';
@@ -60,7 +90,7 @@ class _SignInPageState extends State<SignInPage> {
     return null;
   }
 
-  void onLogin() {
+  void onSignUp() {
     FocusScope.of(context).unfocus();
     if (_formKey.currentState?.validate() ?? false) {
       print('Success!');
@@ -86,75 +116,74 @@ class _SignInPageState extends State<SignInPage> {
                 const _WelcomeTextWidget(),
                 const SizedBox(height: 16),
                 const Text(
-                  'Sign in to track your orders, manage your wishlist, and shop your favorite items anytime.',
+                  'Join thousands of happy shoppers. It’s fast, free, and only takes a few seconds!',
                 ),
                 const SizedBox(height: 50),
                 Text('Email', style: theme.textTheme.bodyLarge),
                 const SizedBox(height: 10),
                 CustomTextFieldWidget(
-                  validator: _validateEmail,
                   controller: emailController,
                   focusNode: emailFocus,
+                  validator: _validateEmail,
                   hintText: 'Input your email here',
                   prefixIcon: const Icon(Icons.email_outlined, size: 20),
+                ),
+                const SizedBox(height: 24),
+                Text('Full Name', style: theme.textTheme.bodyLarge),
+                const SizedBox(height: 10),
+                CustomTextFieldWidget(
+                  controller: nameController,
+                  focusNode: nameFocus,
+                  validator: _validateName,
+                  hintText: 'Input your name here',
+                  prefixIcon: const Icon(Icons.person_2_outlined, size: 20),
+                ),
+                const SizedBox(height: 24),
+                Text('Phone Number', style: theme.textTheme.bodyLarge),
+                const SizedBox(height: 10),
+                CustomTextFieldWidget(
+                  controller: phoneController,
+                  focusNode: phoneFocus,
+                  validator: _validatePhone,
+                  hintText: 'xxxx xxxx xxxx',
+                  prefixIcon: const Icon(Icons.phone_outlined, size: 20),
                 ),
                 const SizedBox(height: 24),
                 Text('Password', style: theme.textTheme.bodyLarge),
                 const SizedBox(height: 10),
                 CustomTextFieldWidget(
-                  validator: _validatePassword,
                   controller: passwordController,
                   focusNode: passwordFocus,
-                  obscureText: _obscurePassword,
+                  validator: _validatePassword,
+                  obscureText: true,
                   hintText: '********',
-                  prefixIcon: const Icon(Icons.lock_outline_rounded, size: 20),
-                  suffixIcon: IconButton(
-                    onPressed: () {
-                      setState(() {
-                        _obscurePassword = !_obscurePassword;
-                      });
-                    },
-                    icon: Icon(
-                      _obscurePassword
-                          ? Icons.visibility_off_outlined
-                          : Icons.visibility_outlined,
-                      size: 20,
-                    ),
+                  prefixIcon: const Icon(Icons.lock_outline, size: 20),
+                  suffixIcon: const Icon(
+                    Icons.visibility_off_outlined,
+                    size: 20,
                   ),
-                ),
-                Row(
-                  children: [
-                    const Spacer(),
-                    TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        'Forgot Password',
-                        style: theme.textTheme.labelSmall,
-                      ),
-                    ),
-                  ],
                 ),
                 const SizedBox(height: 30),
                 CustomButtonWidget(
-                  title: 'Login',
+                  title: 'Sign Up',
                   isActive: true,
-                  onPressed: onLogin,
+                  onPressed: onSignUp,
                 ),
                 const SizedBox(height: 16),
                 Center(
                   child: RichText(
                     text: TextSpan(
-                      text: 'Don’t have account yet?',
+                      text: 'You already have account?',
                       style: theme.textTheme.labelMedium!.copyWith(
                         color: AppColors.blackColor,
                       ),
                       children: [
                         TextSpan(
-                          text: ' Sign Up',
+                          text: ' Login',
                           style: theme.textTheme.labelSmall,
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
-                              context.goNamed('signUp');
+                              context.goNamed('signIn');
                             },
                         ),
                       ],
@@ -179,14 +208,14 @@ class _WelcomeTextWidget extends StatelessWidget {
 
     return RichText(
       text: TextSpan(
-        text: 'Welcome',
-        style: theme.textTheme.displayMedium,
+        text: 'Let’s',
+        style: theme.textTheme.displayMedium!.copyWith(
+          color: AppColors.primaryColor,
+        ),
         children: [
           TextSpan(
-            text: ' Back!',
-            style: theme.textTheme.displayMedium!.copyWith(
-              color: AppColors.primaryColor,
-            ),
+            text: ' Join Shopping!',
+            style: theme.textTheme.displayMedium,
           ),
         ],
       ),
