@@ -38,4 +38,13 @@ class AuthRepositoryImpl implements AuthRepository {
       rethrow;
     }
   }
+
+  @override
+  bool isAuth() {
+    try {
+      return remote.currentUser() != null;
+    } catch (_) {
+      rethrow;
+    }
+  }
 }

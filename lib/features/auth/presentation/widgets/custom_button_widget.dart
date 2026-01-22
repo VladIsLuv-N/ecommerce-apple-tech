@@ -2,7 +2,7 @@ import 'package:ecommerce_apple_tech_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomButtonWidget extends StatelessWidget {
-  final String title;
+  final Widget title;
   final bool isActive;
   final void Function()? onPressed;
 
@@ -15,8 +15,6 @@ class CustomButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
@@ -29,12 +27,7 @@ class CustomButtonWidget extends StatelessWidget {
           ),
         ),
         onPressed: onPressed,
-        child: Text(
-          title,
-          style: isActive
-              ? theme.textTheme.labelLarge
-              : theme.textTheme.labelMedium,
-        ),
+        child: title,
       ),
     );
   }

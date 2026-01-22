@@ -31,16 +31,13 @@ abstract class AppTheme {
         labelSmall: TextStyle(
           color: AppColors.primaryColor,
           fontSize: 14,
-          fontWeight: FontWeight.w600
+          fontWeight: FontWeight.w600,
         ),
         labelMedium: TextStyle(
           color: AppColors.secondaryTextColor,
           fontSize: 14,
         ),
-        labelLarge: TextStyle(
-          color: AppColors.whiteColor,
-          fontSize: 16,
-        ),
+        labelLarge: TextStyle(color: AppColors.whiteColor, fontSize: 16),
       ),
 
       inputDecorationTheme: InputDecorationTheme(
@@ -59,6 +56,11 @@ abstract class AppTheme {
           borderRadius: BorderRadius.circular(30),
           borderSide: const BorderSide(color: AppColors.secondaryDarkColor),
         ),
+      ),
+
+      progressIndicatorTheme: const ProgressIndicatorThemeData(
+        color: AppColors.whiteColor,
+        strokeCap: StrokeCap.round,
       ),
     );
   }

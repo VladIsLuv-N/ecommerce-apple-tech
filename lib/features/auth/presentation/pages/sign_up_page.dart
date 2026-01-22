@@ -1,8 +1,11 @@
 import 'package:ecommerce_apple_tech_app/core/theme/app_colors.dart';
+import 'package:ecommerce_apple_tech_app/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:ecommerce_apple_tech_app/features/auth/presentation/cubit/auth_state.dart';
 import 'package:ecommerce_apple_tech_app/features/auth/presentation/widgets/custom_button_widget.dart';
 import 'package:ecommerce_apple_tech_app/features/auth/presentation/widgets/custom_text_field_widget.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -93,7 +96,12 @@ class _SignUpPageState extends State<SignUpPage> {
   void onSignUp() {
     FocusScope.of(context).unfocus();
     if (_formKey.currentState?.validate() ?? false) {
-      print('Success!');
+      context.read<AuthCubit>().signUp(
+        email: emailController.text.trim(),
+        name: nameController.text.trim(),
+        phoneNumber: phoneController.text.trim(),
+        password: passwordController.text.trim(),
+      );
     } else {
       print('No Success!');
     }
@@ -104,96 +112,126 @@ class _SignUpPageState extends State<SignUpPage> {
     final theme = Theme.of(context);
 
     return Scaffold(
-      body: Form(
-        key: _formKey,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: Center(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const _WelcomeTextWidget(),
-                const SizedBox(height: 16),
-                const Text(
-                  'Join thousands of happy shoppers. It’s fast, free, and only takes a few seconds!',
+      body: BlocConsumer<AuthCubit, AuthState>(
+        listener: (context, state) {
+          if (state is AuthAuthenticated) {
+            context.goNamed('home');
+          }
+
+          if (state is AuthError) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(
+                  state.message,
+                  style: const TextStyle(color: Colors.red),
                 ),
-                const SizedBox(height: 50),
-                Text('Email', style: theme.textTheme.bodyLarge),
-                const SizedBox(height: 10),
-                CustomTextFieldWidget(
-                  controller: emailController,
-                  focusNode: emailFocus,
-                  validator: _validateEmail,
-                  hintText: 'Input your email here',
-                  prefixIcon: const Icon(Icons.email_outlined, size: 20),
-                ),
-                const SizedBox(height: 24),
-                Text('Full Name', style: theme.textTheme.bodyLarge),
-                const SizedBox(height: 10),
-                CustomTextFieldWidget(
-                  controller: nameController,
-                  focusNode: nameFocus,
-                  validator: _validateName,
-                  hintText: 'Input your name here',
-                  prefixIcon: const Icon(Icons.person_2_outlined, size: 20),
-                ),
-                const SizedBox(height: 24),
-                Text('Phone Number', style: theme.textTheme.bodyLarge),
-                const SizedBox(height: 10),
-                CustomTextFieldWidget(
-                  controller: phoneController,
-                  focusNode: phoneFocus,
-                  validator: _validatePhone,
-                  hintText: 'xxxx xxxx xxxx',
-                  prefixIcon: const Icon(Icons.phone_outlined, size: 20),
-                ),
-                const SizedBox(height: 24),
-                Text('Password', style: theme.textTheme.bodyLarge),
-                const SizedBox(height: 10),
-                CustomTextFieldWidget(
-                  controller: passwordController,
-                  focusNode: passwordFocus,
-                  validator: _validatePassword,
-                  obscureText: true,
-                  hintText: '********',
-                  prefixIcon: const Icon(Icons.lock_outline, size: 20),
-                  suffixIcon: const Icon(
-                    Icons.visibility_off_outlined,
-                    size: 20,
-                  ),
-                ),
-                const SizedBox(height: 30),
-                CustomButtonWidget(
-                  title: 'Sign Up',
-                  isActive: true,
-                  onPressed: onSignUp,
-                ),
-                const SizedBox(height: 16),
-                Center(
-                  child: RichText(
-                    text: TextSpan(
-                      text: 'You already have account?',
-                      style: theme.textTheme.labelMedium!.copyWith(
-                        color: AppColors.blackColor,
-                      ),
-                      children: [
-                        TextSpan(
-                          text: ' Login',
-                          style: theme.textTheme.labelSmall,
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              context.goNamed('signIn');
-                            },
-                        ),
-                      ],
+              ),
+            );
+          }
+        },
+        builder: (context, state) {
+          final isLoading = state is AuthLoading;
+
+          return Form(
+            key: _formKey,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Center(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const _WelcomeTextWidget(),
+                    const SizedBox(height: 16),
+                    const Text(
+                      'Join thousands of happy shoppers. It’s fast, free, and only takes a few seconds!',
                     ),
-                  ),
+                    const SizedBox(height: 50),
+                    Text('Email', style: theme.textTheme.bodyLarge),
+                    const SizedBox(height: 10),
+                    CustomTextFieldWidget(
+                      controller: emailController,
+                      focusNode: emailFocus,
+                      validator: _validateEmail,
+                      hintText: 'Input your email here',
+                      prefixIcon: const Icon(Icons.email_outlined, size: 20),
+                    ),
+                    const SizedBox(height: 24),
+                    Text('Full Name', style: theme.textTheme.bodyLarge),
+                    const SizedBox(height: 10),
+                    CustomTextFieldWidget(
+                      controller: nameController,
+                      focusNode: nameFocus,
+                      validator: _validateName,
+                      hintText: 'Input your name here',
+                      prefixIcon: const Icon(Icons.person_2_outlined, size: 20),
+                    ),
+                    const SizedBox(height: 24),
+                    Text('Phone Number', style: theme.textTheme.bodyLarge),
+                    const SizedBox(height: 10),
+                    CustomTextFieldWidget(
+                      controller: phoneController,
+                      focusNode: phoneFocus,
+                      validator: _validatePhone,
+                      hintText: 'xxxx xxxx xxxx',
+                      prefixIcon: const Icon(Icons.phone_outlined, size: 20),
+                    ),
+                    const SizedBox(height: 24),
+                    Text('Password', style: theme.textTheme.bodyLarge),
+                    const SizedBox(height: 10),
+                    CustomTextFieldWidget(
+                      controller: passwordController,
+                      focusNode: passwordFocus,
+                      validator: _validatePassword,
+                      obscureText: true,
+                      hintText: '********',
+                      prefixIcon: const Icon(Icons.lock_outline, size: 20),
+                      suffixIcon: const Icon(
+                        Icons.visibility_off_outlined,
+                        size: 20,
+                      ),
+                    ),
+                    const SizedBox(height: 30),
+                    CustomButtonWidget(
+                      title: isLoading
+                          ? const SizedBox(
+                              height: 20,
+                              width: 20,
+                              child: CircularProgressIndicator(),
+                            )
+                          : Text('Sign Up', style: theme.textTheme.labelLarge),
+                      isActive: true,
+                      onPressed: isLoading ? null : onSignUp,
+                    ),
+                    const SizedBox(height: 16),
+                    Center(
+                      child: RichText(
+                        text: TextSpan(
+                          text: 'You already have account?',
+                          style: theme.textTheme.labelMedium!.copyWith(
+                            color: AppColors.blackColor,
+                          ),
+                          children: [
+                            TextSpan(
+                              text: ' Login',
+                              style: theme.textTheme.labelSmall,
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = isLoading
+                                    ? null
+                                    : () {
+                                        context.goNamed('signIn');
+                                      },
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
-          ),
-        ),
+          );
+        },
       ),
     );
   }

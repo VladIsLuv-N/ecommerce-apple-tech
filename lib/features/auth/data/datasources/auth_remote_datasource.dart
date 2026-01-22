@@ -12,6 +12,7 @@ abstract class AuthRemoteDatasource {
     String phoneNumber,
   );
   Future<void> signOut();
+  User? currentUser();
 }
 
 class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
@@ -71,6 +72,15 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
       await auth.signOut();
     } catch (e) {
       throw 'SignOut Error!!!';
+    }
+  }
+
+  @override
+  User? currentUser() {
+    try {
+      return auth.currentUser;
+    } catch (_) {
+      throw 'CurrentUser Error!!!';
     }
   }
 }
