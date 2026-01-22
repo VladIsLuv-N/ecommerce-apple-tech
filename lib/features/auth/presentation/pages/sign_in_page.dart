@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:ecommerce_apple_tech_app/core/theme/app_colors.dart';
 import 'package:ecommerce_apple_tech_app/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:ecommerce_apple_tech_app/features/auth/presentation/cubit/auth_state.dart';
@@ -71,7 +73,7 @@ class _SignInPageState extends State<SignInPage> {
         password: passwordController.text.trim(),
       );
     } else {
-      print('No Success!');
+      log('No success!');
     }
   }
 
