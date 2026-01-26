@@ -14,6 +14,11 @@ abstract class AppTheme {
       ),
 
       textTheme: const TextTheme(
+        titleMedium: TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.w600,
+          color: AppColors.mainTextColor,
+        ),
         displayMedium: TextStyle(
           fontSize: 32,
           fontWeight: FontWeight.w600,
@@ -28,6 +33,7 @@ abstract class AppTheme {
           color: AppColors.secondaryTextColor,
           fontSize: 16,
         ),
+        bodySmall: TextStyle(color: AppColors.secondaryTextColor, fontSize: 14),
         labelSmall: TextStyle(
           color: AppColors.primaryColor,
           fontSize: 14,
@@ -61,6 +67,11 @@ abstract class AppTheme {
       progressIndicatorTheme: const ProgressIndicatorThemeData(
         color: AppColors.whiteColor,
         strokeCap: StrokeCap.round,
+      ),
+
+      appBarTheme: const AppBarTheme(
+        backgroundColor: AppColors.whiteColor,
+        iconTheme: IconThemeData(color: AppColors.blackColor),
       ),
     );
   }
