@@ -72,6 +72,8 @@ abstract class AppTheme {
       appBarTheme: const AppBarTheme(
         backgroundColor: AppColors.whiteColor,
         iconTheme: IconThemeData(color: AppColors.blackColor),
+        surfaceTintColor: Colors.transparent,
+        foregroundColor: Colors.transparent,
       ),
     );
   }
