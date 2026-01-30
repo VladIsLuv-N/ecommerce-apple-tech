@@ -1,7 +1,7 @@
 import 'package:ecommerce_apple_tech_app/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:ecommerce_apple_tech_app/features/auth/presentation/pages/sign_in_page.dart';
 import 'package:ecommerce_apple_tech_app/features/auth/presentation/pages/sign_up_page.dart';
-import 'package:ecommerce_apple_tech_app/features/home/presentation/pages/home_page.dart';
+import 'package:ecommerce_apple_tech_app/features/home/presentation/pages/home_page_wraper.dart';
 import 'package:ecommerce_apple_tech_app/features/onboarding/presentation/pages/onboarding_first_page.dart';
 import 'package:ecommerce_apple_tech_app/features/onboarding/presentation/pages/onboarding_layout.dart';
 import 'package:ecommerce_apple_tech_app/features/onboarding/presentation/pages/onboarding_second_page.dart';
@@ -55,7 +55,7 @@ void initRouter(AuthCubit cubit) {
       GoRoute(
         path: '/home',
         name: 'home',
-        builder: (context, state) => const HomePage(),
+        builder: (context, state) => const HomePageWraper(),
       ),
     ],
   );

@@ -23,6 +23,7 @@ class ProductItemWidget extends StatelessWidget {
     return SizedBox(
       width: width,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             height: height,
