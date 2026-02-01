@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce_apple_tech_app/core/di/service_locator.dart';
 import 'package:flutter/material.dart';
@@ -14,13 +15,13 @@ class _AdminPageState extends State<AdminPage> {
 
   Future<void> addCategory() async {
     try {
-      print('All OK!!!');
+      log('All OK!!!');
     } catch (e) {
-      print(e);
+      log(e.toString());
     }
   }
 
-  Future<void> addProduct() async {
+  Future<void> addItemInCollections() async {
     try {
       await _firestore.collection('categories').doc('accessories').set({
         'id': 'accessories',
@@ -34,9 +35,9 @@ class _AdminPageState extends State<AdminPage> {
         },
         'createdAt': FieldValue.serverTimestamp(),
       });
-      print('All OK!');
+      log('All OK!');
     } catch (e) {
-      print(e);
+      log(e.toString());
     }
   }
 
@@ -46,7 +47,7 @@ class _AdminPageState extends State<AdminPage> {
       appBar: AppBar(),
       body: Center(
         child: ElevatedButton(
-          onPressed: addProduct,
+          onPressed: addItemInCollections,
           child: const Text('Add Data'),
         ),
       ),

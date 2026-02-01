@@ -20,11 +20,7 @@ class CategoriesSection extends StatelessWidget {
           child: BlocBuilder<HomeCubit, HomeState>(
             builder: (context, state) {
               if (state is HomeLoading) {
-                return Center(
-                  child: CircularProgressIndicator(
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                );
+                return const _CategoriesLoadingWidget();
               }
 
               if (state is HomeLoaded) {
@@ -56,6 +52,22 @@ class _CategoriesList extends StatelessWidget {
       separatorBuilder: (context, index) => const SizedBox(width: 10),
       itemBuilder: (context, index) {
         return CategoryItem(category: categories[index]);
+      },
+    );
+  }
+}
+
+class _CategoriesLoadingWidget extends StatelessWidget {
+  const _CategoriesLoadingWidget();
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.separated(
+      scrollDirection: Axis.horizontal,
+      itemCount: 6,
+      separatorBuilder: (context, index) => const SizedBox(width: 10),
+      itemBuilder: (context, index) {
+        return const CategoryItemSkeleton();
       },
     );
   }
