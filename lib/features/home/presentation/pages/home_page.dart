@@ -3,7 +3,7 @@ import 'package:ecommerce_apple_tech_app/features/admin_page.dart';
 import 'package:ecommerce_apple_tech_app/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:ecommerce_apple_tech_app/features/home/presentation/widgets/banner_widget.dart';
 import 'package:ecommerce_apple_tech_app/features/home/presentation/widgets/categories_section.dart';
-import 'package:ecommerce_apple_tech_app/features/home/presentation/widgets/category_list_widget.dart';
+import 'package:ecommerce_apple_tech_app/features/home/presentation/widgets/most_popular_section.dart';
 import 'package:ecommerce_apple_tech_app/features/home/presentation/widgets/recently_viewed_widget.dart';
 import 'package:ecommerce_apple_tech_app/features/home/presentation/widgets/section_header_widget.dart';
 import 'package:flutter/material.dart';
@@ -72,29 +72,19 @@ class HomePage extends StatelessWidget {
                 const SizedBox(height: 16),
                 const RecentlyViewedWidget(),
                 const SizedBox(height: 20),
-                SectionHeaderWidget(title: 'Most Popular', onPressed: () {}),
-                const SizedBox(height: 16),
-                const CategoryListWidget(
-                  heightWidget: 250,
-                  countItems: 10,
-                  widthItem: 160,
-                  heightItem: 160,
-                  titleItem: 'iPhone 16 Pro Max – 256GB',
-                  priceItem: 990,
-                  ratingItem: 4.8,
-                ),
+                const MostPopularSection(),
                 const SizedBox(height: 20),
                 SectionHeaderWidget(title: 'Special For You', onPressed: () {}),
                 const SizedBox(height: 16),
-                const CategoryListWidget(
-                  heightWidget: 250,
-                  countItems: 10,
-                  widthItem: 160,
-                  heightItem: 160,
-                  titleItem: 'Ipad 2025',
-                  priceItem: 550,
-                  ratingItem: 4.5,
-                ),
+                // const CategoryListWidget(
+                //   heightWidget: 250,
+                //   countItems: 10,
+                //   widthItem: 160,
+                //   heightItem: 160,
+                //   titleItem: 'Ipad 2025',
+                //   priceItem: 550,
+                //   ratingItem: 4.5,
+                // ),
               ],
             ),
           ),
