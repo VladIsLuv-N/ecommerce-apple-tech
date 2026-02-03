@@ -4,6 +4,7 @@ import 'package:ecommerce_apple_tech_app/features/auth/presentation/cubit/auth_c
 import 'package:ecommerce_apple_tech_app/features/home/presentation/widgets/banner_widget.dart';
 import 'package:ecommerce_apple_tech_app/features/home/presentation/widgets/categories_section.dart';
 import 'package:ecommerce_apple_tech_app/features/home/presentation/widgets/most_popular_section.dart';
+import 'package:ecommerce_apple_tech_app/features/home/presentation/widgets/new_products_section.dart';
 import 'package:ecommerce_apple_tech_app/features/home/presentation/widgets/recently_viewed_widget.dart';
 import 'package:ecommerce_apple_tech_app/features/home/presentation/widgets/section_header_widget.dart';
 import 'package:flutter/material.dart';
@@ -74,17 +75,7 @@ class HomePage extends StatelessWidget {
                 const SizedBox(height: 20),
                 const MostPopularSection(),
                 const SizedBox(height: 20),
-                SectionHeaderWidget(title: 'Special For You', onPressed: () {}),
-                const SizedBox(height: 16),
-                // const CategoryListWidget(
-                //   heightWidget: 250,
-                //   countItems: 10,
-                //   widthItem: 160,
-                //   heightItem: 160,
-                //   titleItem: 'Ipad 2025',
-                //   priceItem: 550,
-                //   ratingItem: 4.5,
-                // ),
+                const NewProductsSection(),
               ],
             ),
           ),

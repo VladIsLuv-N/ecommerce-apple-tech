@@ -6,25 +6,25 @@ import 'package:ecommerce_apple_tech_app/features/home/presentation/widgets/sect
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class MostPopularSection extends StatelessWidget {
-  const MostPopularSection({super.key});
+class NewProductsSection extends StatelessWidget {
+  const NewProductsSection({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SectionHeaderWidget(title: 'Most Popular', onPressed: () {}),
+        SectionHeaderWidget(title: 'New', onPressed: () {}),
         const SizedBox(height: 16),
         SizedBox(
           height: 250,
           child: BlocBuilder<HomeCubit, HomeState>(
             builder: (context, state) {
               if (state is HomeLoading) {
-                return const _MostPopularLoadingWidget();
+                return const _NewProductsLoadingWidget();
               }
 
               if (state is HomeLoaded) {
-                return _MostPopularList(products: state.popularProducts);
+                return _NewProductsList(products: state.newProducts);
               }
 
               if (state is HomeError) {
@@ -40,10 +40,10 @@ class MostPopularSection extends StatelessWidget {
   }
 }
 
-class _MostPopularList extends StatelessWidget {
+class _NewProductsList extends StatelessWidget {
   final List<ProductEntity> products;
 
-  const _MostPopularList({required this.products});
+  const _NewProductsList({required this.products});
 
   @override
   Widget build(BuildContext context) {
@@ -62,8 +62,8 @@ class _MostPopularList extends StatelessWidget {
   }
 }
 
-class _MostPopularLoadingWidget extends StatelessWidget {
-  const _MostPopularLoadingWidget();
+class _NewProductsLoadingWidget extends StatelessWidget {
+  const _NewProductsLoadingWidget();
 
   @override
   Widget build(BuildContext context) {

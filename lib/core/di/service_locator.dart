@@ -12,6 +12,7 @@ import 'package:ecommerce_apple_tech_app/features/home/data/repositories_impl/ho
 import 'package:ecommerce_apple_tech_app/features/home/domain/repositories/home_repository.dart';
 import 'package:ecommerce_apple_tech_app/features/home/domain/usecases/get_categories_usecase.dart';
 import 'package:ecommerce_apple_tech_app/features/home/domain/usecases/get_most_popular_usecase.dart';
+import 'package:ecommerce_apple_tech_app/features/home/domain/usecases/get_new_products_usecase.dart';
 import 'package:ecommerce_apple_tech_app/features/home/presentation/cubit/home_cubit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
@@ -57,11 +58,13 @@ void initGetIt() {
 
   getIt.registerLazySingleton(() => GetCategoriesUsecase(repository: getIt()));
   getIt.registerLazySingleton(() => GetMostPopularUsecase(repository: getIt()));
+  getIt.registerLazySingleton(() => GetNewProductsUsecase(repository: getIt()));
 
   getIt.registerFactory(
     () => HomeCubit(
       getCategoriesUseCase: getIt(),
       getMostPopularUsecase: getIt(),
+      getNewProductsUsecase: getIt(),
     ),
   );
 }

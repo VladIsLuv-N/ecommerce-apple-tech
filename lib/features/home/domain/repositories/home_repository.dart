@@ -4,4 +4,5 @@ import 'package:ecommerce_apple_tech_app/features/home/domain/entities/category_
 abstract class HomeRepository {
   Future<List<CategoryEntity>> getCategories();
   Future<List<ProductEntity>> getMostPopular();
+  Future<List<ProductEntity>> getNewProducts();
 }

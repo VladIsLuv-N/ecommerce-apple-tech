@@ -9,9 +9,14 @@ class HomeLoading extends HomeState {}
 
 class HomeLoaded extends HomeState {
   final List<CategoryEntity> categories;
-  final List<ProductEntity> products;
+  final List<ProductEntity> popularProducts;
+  final List<ProductEntity> newProducts;
 
-  HomeLoaded({required this.categories, required this.products});
+  HomeLoaded({
+    required this.categories,
+    required this.popularProducts,
+    required this.newProducts,
+  });
 }
 
 class HomeError extends HomeState {

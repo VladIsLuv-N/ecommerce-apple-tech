@@ -25,4 +25,13 @@ class HomeRepositoryImpl implements HomeRepository {
       rethrow;
     }
   }
+
+  @override
+  Future<List<ProductEntity>> getNewProducts() async {
+    try {
+      return await remote.getNewProducts();
+    } catch (_) {
+      rethrow;
+    }
+  }
 }

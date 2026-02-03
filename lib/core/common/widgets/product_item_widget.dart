@@ -30,9 +30,11 @@ class ProductItemWidget extends StatelessWidget {
               color: theme.colorScheme.secondary,
               borderRadius: BorderRadius.circular(16),
             ),
-            child: CachedNetworkImage(
-              imageUrl: product.images[0],
-              errorWidget: (context, url, error) => const Icon(Icons.error),
+            child: Center(
+              child: CachedNetworkImage(
+                imageUrl: product.images[0],
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+              ),
             ),
           ),
           const SizedBox(height: 12),

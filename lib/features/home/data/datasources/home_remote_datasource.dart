@@ -7,6 +7,7 @@ import 'package:ecommerce_apple_tech_app/features/home/domain/entities/category_
 abstract class HomeRemoteDatasource {
   Future<List<CategoryEntity>> getCategories();
   Future<List<ProductEntity>> getMostPopular();
+  Future<List<ProductEntity>> getNewProducts();
 }
 
 class HomeRemoteDatasourceImpl implements HomeRemoteDatasource {
@@ -44,6 +45,24 @@ class HomeRemoteDatasourceImpl implements HomeRemoteDatasource {
       return products;
     } catch (_) {
       throw 'Get Most Popular Error!';
+    }
+  }
+
+  @override
+  Future<List<ProductEntity>> getNewProducts() async {
+    try {
+      final snapshot = await firestore
+          .collection('products')
+          .where('tags', arrayContains: 'new')
+          .orderBy('name')
+          .get();
+      final products = snapshot.docs
+          .map((doc) => ProductModel.fromJson(doc.data()))
+          .toList();
+
+      return products;
+    } catch (_) {
+      throw 'Get New PRoducts Error!';
     }
   }
 }
