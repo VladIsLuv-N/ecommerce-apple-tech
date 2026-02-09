@@ -14,8 +14,10 @@ class AppColorSheme {
     error: AppColors.errorColor,
     onError: AppColors.whiteColor,
 
-    surface: AppColors.secondaryColor,
+    surface: AppColors.secondaryDarkColor,
     onSurface: AppColors.whiteColor,
+
+    primaryContainer: AppColors.greyDark
   );
 
   static const dark = ColorScheme(

@@ -18,13 +18,9 @@ class CustomButtonWidget extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
-        style: ButtonStyle(
-          overlayColor: const WidgetStatePropertyAll(
-            AppColors.secondaryDarkColor,
-          ),
-          backgroundColor: WidgetStatePropertyAll(
-            isActive ? AppColors.primaryColor : AppColors.deactivateButton,
-          ),
+        style: const ButtonStyle(
+          overlayColor: WidgetStatePropertyAll(AppColors.secondaryDarkColor),
+          backgroundColor: WidgetStatePropertyAll(AppColors.primaryColor),
         ),
         onPressed: onPressed,
         child: title,

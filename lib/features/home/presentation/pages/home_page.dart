@@ -1,5 +1,5 @@
 import 'package:ecommerce_apple_tech_app/core/common/widgets/search_widget.dart';
-import 'package:ecommerce_apple_tech_app/features/admin_page.dart';
+import 'package:ecommerce_apple_tech_app/admin_page.dart';
 import 'package:ecommerce_apple_tech_app/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:ecommerce_apple_tech_app/features/home/presentation/widgets/banner_widget.dart';
 import 'package:ecommerce_apple_tech_app/features/home/presentation/widgets/categories_section.dart';

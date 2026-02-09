@@ -249,13 +249,13 @@ class _WelcomeTextWidget extends StatelessWidget {
     return RichText(
       text: TextSpan(
         text: 'Let’s',
-        style: theme.textTheme.displayMedium!.copyWith(
+        style: theme.textTheme.displayLarge!.copyWith(
           color: AppColors.primaryColor,
         ),
         children: [
           TextSpan(
             text: ' Join Shopping!',
-            style: theme.textTheme.displayMedium,
+            style: theme.textTheme.displayLarge,
           ),
         ],
       ),

@@ -221,11 +221,11 @@ class _WelcomeTextWidget extends StatelessWidget {
     return RichText(
       text: TextSpan(
         text: 'Welcome',
-        style: theme.textTheme.displayMedium,
+        style: theme.textTheme.displayLarge,
         children: [
           TextSpan(
             text: ' Back!',
-            style: theme.textTheme.displayMedium!.copyWith(
+            style: theme.textTheme.displayLarge!.copyWith(
               color: AppColors.primaryColor,
             ),
           ),
