@@ -1,12 +1,12 @@
 import 'package:ecommerce_apple_tech_app/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:ecommerce_apple_tech_app/features/auth/presentation/pages/sign_in_page.dart';
 import 'package:ecommerce_apple_tech_app/features/auth/presentation/pages/sign_up_page.dart';
-import 'package:ecommerce_apple_tech_app/features/product_detail/presentation/pages/detail_product_page.dart';
 import 'package:ecommerce_apple_tech_app/features/home/presentation/pages/home_page_wraper.dart';
 import 'package:ecommerce_apple_tech_app/features/onboarding/presentation/pages/onboarding_first_page.dart';
 import 'package:ecommerce_apple_tech_app/features/onboarding/presentation/pages/onboarding_layout.dart';
 import 'package:ecommerce_apple_tech_app/features/onboarding/presentation/pages/onboarding_second_page.dart';
 import 'package:ecommerce_apple_tech_app/features/onboarding/presentation/pages/onboarding_third_page.dart';
+import 'package:ecommerce_apple_tech_app/features/product_detail/presentation/pages/product_detail_page_wrapper.dart';
 import 'package:go_router/go_router.dart';
 
 late final GoRouter appRouter;
@@ -59,9 +59,13 @@ void initRouter(AuthCubit cubit) {
         builder: (context, state) => const HomePageWraper(),
       ),
       GoRoute(
-        path: '/detailProduct',
+        path: '/product/:id',
         name: 'detailProduct',
-        builder: (context, state) => const ProductDetailPage(),
+        builder: (context, state) {
+          final productId = state.pathParameters['id']!;
+
+          return ProductDetailPageWrapper(productId: productId);
+        },
       ),
     ],
   );

@@ -2,23 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class ProductDetailPage extends StatelessWidget {
-  const ProductDetailPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(children: [ProductDetailHeader()]),
-        ),
-      ),
-    );
-  }
-}
-
 class ProductDetailHeader extends StatelessWidget {
-  const ProductDetailHeader({super.key});
+  final List<String> images;
+
+  const ProductDetailHeader({super.key, required this.images});
 
   @override
   Widget build(BuildContext context) {
@@ -32,16 +19,10 @@ class ProductDetailHeader extends StatelessWidget {
           color: theme.colorScheme.primaryContainer,
           borderRadius: BorderRadius.circular(30),
         ),
-        child: const Stack(
+        child: Stack(
           children: [
-            _AppBarProductDetailHeader(),
-            _GalleryProductDetailHeader(
-              images: [
-                "https://i.ibb.co/QFG2k3WC/iphone-15-pro-max-black-1-Photoroom.png",
-                "https://i.ibb.co/0pMQ4h8q/iphone-15-pro-max-black-2-Photoroom.png",
-                "https://i.ibb.co/C32V732M/iphone-15-pro-max-black-3-Photoroom.png",
-              ],
-            ),
+            const _AppBarProductDetailHeader(),
+            _GalleryProductDetailHeader(images: images),
           ],
         ),
       ),
@@ -85,6 +66,7 @@ class _GalleryProductDetailHeaderState
               width: 250,
               child: CachedNetworkImage(
                 imageUrl: widget.images[_selectedIndex],
+                errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
             ),
           ),
@@ -188,7 +170,10 @@ class _GalleryItem extends StatelessWidget {
             width: isSelected ? 3 : 1,
           ),
         ),
-        child: CachedNetworkImage(imageUrl: image),
+        child: CachedNetworkImage(
+          imageUrl: image,
+          errorWidget: (context, url, error) => const Icon(Icons.error),
+        ),
       ),
     );
   }

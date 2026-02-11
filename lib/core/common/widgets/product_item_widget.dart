@@ -22,7 +22,7 @@ class ProductItemWidget extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        context.pushNamed('detailProduct');
+        context.pushNamed('detailProduct', pathParameters: {'id': product.id});
       },
       child: SizedBox(
         width: width,

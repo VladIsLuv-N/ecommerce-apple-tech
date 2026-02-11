@@ -46,12 +46,14 @@ class CategoryItemSkeleton extends StatelessWidget {
     return Skeletonizer(
       child: Column(
         children: [
-          Container(
-            width: 86,
-            height: 86,
-            decoration: BoxDecoration(
-              color: theme.colorScheme.secondary,
-              borderRadius: BorderRadius.circular(16),
+          Skeletonizer(
+            child: Container(
+              width: 86,
+              height: 86,
+              decoration: BoxDecoration(
+                color: theme.colorScheme.secondary,
+                borderRadius: BorderRadius.circular(16),
+              ),
             ),
           ),
           const SizedBox(height: 8),
