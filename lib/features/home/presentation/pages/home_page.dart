@@ -1,12 +1,12 @@
 import 'package:ecommerce_apple_tech_app/core/common/widgets/search_widget.dart';
 import 'package:ecommerce_apple_tech_app/admin_page.dart';
 import 'package:ecommerce_apple_tech_app/features/auth/presentation/cubit/auth_cubit.dart';
-import 'package:ecommerce_apple_tech_app/features/home/presentation/widgets/banner_widget.dart';
+import 'package:ecommerce_apple_tech_app/core/common/widgets/banner_widget.dart';
 import 'package:ecommerce_apple_tech_app/features/home/presentation/widgets/categories_section.dart';
 import 'package:ecommerce_apple_tech_app/features/home/presentation/widgets/most_popular_section.dart';
 import 'package:ecommerce_apple_tech_app/features/home/presentation/widgets/new_products_section.dart';
-import 'package:ecommerce_apple_tech_app/features/home/presentation/widgets/recently_viewed_widget.dart';
-import 'package:ecommerce_apple_tech_app/features/home/presentation/widgets/section_header_widget.dart';
+// import 'package:ecommerce_apple_tech_app/features/home/presentation/widgets/recently_viewed_widget.dart';
+// import 'package:ecommerce_apple_tech_app/features/home/presentation/widgets/section_header_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -56,26 +56,26 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
+            padding: EdgeInsets.symmetric(horizontal: 24),
             child: Column(
               children: [
-                const SizedBox(height: 25),
-                const BannerWidget(),
-                const SizedBox(height: 30),
-                const SearchWidget(),
-                const SizedBox(height: 25),
-                const CategoriesSection(),
-                const SizedBox(height: 25),
-                SectionHeaderWidget(title: 'Recently Viewed', onPressed: () {}),
-                const SizedBox(height: 16),
-                const RecentlyViewedWidget(),
-                const SizedBox(height: 20),
-                const MostPopularSection(),
-                const SizedBox(height: 20),
-                const NewProductsSection(),
+                SizedBox(height: 25),
+                BannerWidget(),
+                SizedBox(height: 30),
+                SearchWidget(),
+                SizedBox(height: 25),
+                CategoriesSection(),
+                SizedBox(height: 25),
+                // SectionHeaderWidget(title: 'Recently Viewed', onPressed: () {}),
+                // const SizedBox(height: 16),
+                // const RecentlyViewedWidget(),
+                // const SizedBox(height: 20),
+                MostPopularSection(),
+                SizedBox(height: 20),
+                NewProductsSection(),
               ],
             ),
           ),

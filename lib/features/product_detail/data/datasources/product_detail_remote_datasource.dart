@@ -16,7 +16,13 @@ class ProductDetailRemoteDatasourceImpl
   Future<ProductEntity> getProduct(String id) async {
     try {
       final snapshot = await firestore.collection('products').doc(id).get();
-      final product = ProductModel.fromJson(snapshot.data()!);
+      final data = snapshot.data();
+
+      if (data == null) {
+        throw 'Product not found';
+      }
+
+      final product = ProductModel.fromJson(data);
 
       return product;
     } catch (_) {

@@ -28,21 +28,21 @@ class SearchWidget extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(width: 16),
-        Container(
-          width: 50,
-          height: 50,
-          decoration: BoxDecoration(
-            color: theme.colorScheme.primary,
-            borderRadius: BorderRadius.circular(30),
-          ),
-          child: Center(
-            child: IconButton(
-              onPressed: onCameraPressed,
-              icon: const Icon(Icons.camera_alt),
-            ),
-          ),
-        ),
+        // const SizedBox(width: 16),
+        // Container(
+        //   width: 50,
+        //   height: 50,
+        //   decoration: BoxDecoration(
+        //     color: theme.colorScheme.primary,
+        //     borderRadius: BorderRadius.circular(30),
+        //   ),
+        //   child: Center(
+        //     child: IconButton(
+        //       onPressed: onCameraPressed,
+        //       icon: const Icon(Icons.camera_alt),
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }
