@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 
 class BannerWidget extends StatelessWidget {
-  const BannerWidget({super.key});
+  final Color color;
+  
+  const BannerWidget({super.key, required this.color});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 200,
       decoration: BoxDecoration(
-        color: Colors.black,
+        color: color,
         borderRadius: BorderRadius.circular(20),
       ),
       child: const Center(child: Text('Banner')),

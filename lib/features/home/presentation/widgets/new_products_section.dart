@@ -17,7 +17,10 @@ class NewProductsSection extends StatelessWidget {
         SectionHeaderWidget(
           title: 'New',
           onPressed: () {
-            context.pushNamed('productsCollection');
+            context.pushNamed(
+              'productsCollection',
+              pathParameters: {'tag': 'popular'},
+            );
           },
         ),
         const SizedBox(height: 16),

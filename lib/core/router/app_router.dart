@@ -6,7 +6,7 @@ import 'package:ecommerce_apple_tech_app/features/onboarding/presentation/pages/
 import 'package:ecommerce_apple_tech_app/features/onboarding/presentation/pages/onboarding_layout.dart';
 import 'package:ecommerce_apple_tech_app/features/onboarding/presentation/pages/onboarding_second_page.dart';
 import 'package:ecommerce_apple_tech_app/features/onboarding/presentation/pages/onboarding_third_page.dart';
-import 'package:ecommerce_apple_tech_app/features/products_collection/presentation/pages/products_collection_page.dart';
+import 'package:ecommerce_apple_tech_app/features/products_collection/presentation/pages/product_collection_page_wrapper.dart';
 import 'package:ecommerce_apple_tech_app/features/product_detail/presentation/pages/product_detail_page_wrapper.dart';
 import 'package:go_router/go_router.dart';
 
@@ -69,9 +69,13 @@ void initRouter(AuthCubit cubit) {
         },
       ),
       GoRoute(
-        path: '/productsCollection',
+        path: '/productsCollection/:tag',
         name: 'productsCollection',
-        builder: (context, state) => const ProductsCollectionPage(),
+        builder: (context, state) {
+          final tag = state.pathParameters['tag']!;
+
+          return ProductCollectionPageWrapper(tag: tag);
+        },
       ),
     ],
   );

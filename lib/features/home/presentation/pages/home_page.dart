@@ -63,7 +63,9 @@ class HomePage extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(height: 25),
-                BannerWidget(),
+                BannerWidget(
+                  color: Colors.deepOrangeAccent,
+                ),
                 SizedBox(height: 30),
                 SearchWidget(),
                 SizedBox(height: 25),

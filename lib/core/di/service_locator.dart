@@ -19,6 +19,11 @@ import 'package:ecommerce_apple_tech_app/features/product_detail/data/repositori
 import 'package:ecommerce_apple_tech_app/features/product_detail/domain/repositories/product_detail_repository.dart';
 import 'package:ecommerce_apple_tech_app/features/product_detail/domain/usecases/get_product_usecase.dart';
 import 'package:ecommerce_apple_tech_app/features/product_detail/presentation/cubit/product_detail_cubit.dart';
+import 'package:ecommerce_apple_tech_app/features/products_collection/data/datasources/product_collection_remote_datasource.dart';
+import 'package:ecommerce_apple_tech_app/features/products_collection/data/repositories_impl/product_collection_repository_impl.dart';
+import 'package:ecommerce_apple_tech_app/features/products_collection/domain/usecases/get_collection_prouducts_usecase.dart';
+import 'package:ecommerce_apple_tech_app/features/products_collection/domain/repositories/product_collection_repository.dart';
+import 'package:ecommerce_apple_tech_app/features/products_collection/presentation/cubit/product_collection_cubit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 
@@ -85,4 +90,19 @@ void initGetIt() {
   getIt.registerLazySingleton(() => GetProductUsecase(repository: getIt()));
 
   getIt.registerFactory(() => ProductDetailCubit(getProductUsecase: getIt()));
+
+  //ProductCollection
+  getIt.registerLazySingleton<ProductCollectionRemoteDatasource>(
+    () => ProductCollectionRemoteDatasourceImpl(firestore: getIt()),
+  );
+
+  getIt.registerLazySingleton<ProductCollectionRepository>(
+    () => ProductCollectionRepositoryImpl(remote: getIt()),
+  );
+
+  getIt.registerLazySingleton(() => GetCollectionProuductsUsecase(repository: getIt()));
+
+  getIt.registerFactory(
+    () => ProductCollectionCubit(getProuductsUsecase: getIt()),
+  );
 }

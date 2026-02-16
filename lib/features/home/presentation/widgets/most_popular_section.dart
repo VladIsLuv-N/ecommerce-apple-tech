@@ -17,7 +17,10 @@ class MostPopularSection extends StatelessWidget {
         SectionHeaderWidget(
           title: 'Most Popular',
           onPressed: () {
-            context.pushNamed('productsCollection');
+            context.pushNamed(
+              'productsCollection',
+              pathParameters: {'tag': 'popular'},
+            );
           },
         ),
         const SizedBox(height: 16),
