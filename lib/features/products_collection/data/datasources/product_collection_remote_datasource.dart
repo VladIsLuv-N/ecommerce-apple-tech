@@ -26,7 +26,6 @@ class ProductCollectionRemoteDatasourceImpl
 
       return products;
     } catch (e) {
-      print(e);
       throw 'Get $tag products error';
     }
   }
