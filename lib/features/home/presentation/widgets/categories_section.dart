@@ -1,10 +1,11 @@
-import 'package:ecommerce_apple_tech_app/features/home/domain/entities/category_entity.dart';
+import 'package:ecommerce_apple_tech_app/core/common/entities/category_entity.dart';
 import 'package:ecommerce_apple_tech_app/features/home/presentation/cubit/home_cubit.dart';
 import 'package:ecommerce_apple_tech_app/features/home/presentation/cubit/home_state.dart';
 import 'package:ecommerce_apple_tech_app/features/home/presentation/widgets/category_item.dart';
 import 'package:ecommerce_apple_tech_app/features/home/presentation/widgets/section_header_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class CategoriesSection extends StatelessWidget {
   const CategoriesSection({super.key});
@@ -13,7 +14,12 @@ class CategoriesSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SectionHeaderWidget(title: 'Our Categories', onPressed: () {}),
+        SectionHeaderWidget(
+          title: 'Our Categories',
+          onPressed: () {
+            context.pushNamed('categories');
+          },
+        ),
         const SizedBox(height: 16),
         SizedBox(
           height: 110,

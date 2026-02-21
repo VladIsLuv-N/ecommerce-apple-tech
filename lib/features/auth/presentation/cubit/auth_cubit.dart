@@ -1,8 +1,10 @@
+import 'package:ecommerce_apple_tech_app/features/auth/domain/usecases/get_current_user_usecase.dart';
 import 'package:ecommerce_apple_tech_app/features/auth/domain/usecases/is_auth_usecase.dart';
 import 'package:ecommerce_apple_tech_app/features/auth/domain/usecases/sign_in_usecase.dart';
 import 'package:ecommerce_apple_tech_app/features/auth/domain/usecases/sign_out_usecase.dart';
 import 'package:ecommerce_apple_tech_app/features/auth/domain/usecases/sign_up_usecase.dart';
 import 'package:ecommerce_apple_tech_app/features/auth/presentation/cubit/auth_state.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AuthCubit extends Cubit<AuthState> {
@@ -10,12 +12,14 @@ class AuthCubit extends Cubit<AuthState> {
   final SignUpUsecase signUpUseCase;
   final SignOutUsecase signOutUseCase;
   final IsAuthUsecase isAuthUseCase;
+  final GetCurrentUserUsecase getCurrentUserUsecase;
 
   AuthCubit({
     required this.signInUseCase,
     required this.signUpUseCase,
     required this.signOutUseCase,
     required this.isAuthUseCase,
+    required this.getCurrentUserUsecase,
   }) : super(AuthInitial());
 
   Future<void> signIn({required String email, required String password}) async {
@@ -66,5 +70,9 @@ class AuthCubit extends Cubit<AuthState> {
 
   bool isAuth() {
     return isAuthUseCase();
+  }
+
+  User? getUser() {
+    return getCurrentUserUsecase();
   }
 }

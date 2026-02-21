@@ -2,11 +2,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce_apple_tech_app/features/auth/data/datasources/auth_remote_datasource.dart';
 import 'package:ecommerce_apple_tech_app/features/auth/data/repositories_impl/auth_repository_impl.dart';
 import 'package:ecommerce_apple_tech_app/features/auth/domain/repositories/auth_repository.dart';
+import 'package:ecommerce_apple_tech_app/features/auth/domain/usecases/get_current_user_usecase.dart';
 import 'package:ecommerce_apple_tech_app/features/auth/domain/usecases/is_auth_usecase.dart';
 import 'package:ecommerce_apple_tech_app/features/auth/domain/usecases/sign_in_usecase.dart';
 import 'package:ecommerce_apple_tech_app/features/auth/domain/usecases/sign_out_usecase.dart';
 import 'package:ecommerce_apple_tech_app/features/auth/domain/usecases/sign_up_usecase.dart';
 import 'package:ecommerce_apple_tech_app/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:ecommerce_apple_tech_app/features/categories/data/datasources/categories_remote_datasource.dart';
+import 'package:ecommerce_apple_tech_app/features/categories/data/repositories_impl/categories_repository_impl.dart';
+import 'package:ecommerce_apple_tech_app/features/categories/domain/repository/categories_repository.dart';
+import 'package:ecommerce_apple_tech_app/features/categories/domain/usecases/get_categories_with_products_usecase.dart';
+import 'package:ecommerce_apple_tech_app/features/categories/presentation/cubit/categories_cubit.dart';
 import 'package:ecommerce_apple_tech_app/features/home/data/datasources/home_remote_datasource.dart';
 import 'package:ecommerce_apple_tech_app/features/home/data/repositories_impl/home_repository_impl.dart';
 import 'package:ecommerce_apple_tech_app/features/home/domain/repositories/home_repository.dart';
@@ -47,6 +53,7 @@ void initGetIt() {
   getIt.registerLazySingleton(() => SignUpUsecase(repository: getIt()));
   getIt.registerLazySingleton(() => SignOutUsecase(repository: getIt()));
   getIt.registerLazySingleton(() => IsAuthUsecase(repository: getIt()));
+  getIt.registerLazySingleton(() => GetCurrentUserUsecase(repository: getIt()));
 
   getIt.registerFactory(
     () => AuthCubit(
@@ -54,6 +61,7 @@ void initGetIt() {
       signUpUseCase: getIt(),
       signOutUseCase: getIt(),
       isAuthUseCase: getIt(),
+      getCurrentUserUsecase: getIt(),
     ),
   );
 
@@ -100,9 +108,28 @@ void initGetIt() {
     () => ProductCollectionRepositoryImpl(remote: getIt()),
   );
 
-  getIt.registerLazySingleton(() => GetCollectionProuductsUsecase(repository: getIt()));
+  getIt.registerLazySingleton(
+    () => GetCollectionProuductsUsecase(repository: getIt()),
+  );
 
   getIt.registerFactory(
     () => ProductCollectionCubit(getProuductsUsecase: getIt()),
+  );
+
+  //Categories
+  getIt.registerLazySingleton<CategoriesRemoteDatasource>(
+    () => CategoriesRemoteDatasourceImpl(firestore: getIt()),
+  );
+
+  getIt.registerLazySingleton<CategoriesRepository>(
+    () => CategoriesRepositoryImpl(remote: getIt()),
+  );
+
+  getIt.registerLazySingleton(
+    () => GetCategoriesWithProductsUsecase(repository: getIt()),
+  );
+
+  getIt.registerFactory(
+    () => CategoriesCubit(getCategoriesWithProductsUsecase: getIt()),
   );
 }

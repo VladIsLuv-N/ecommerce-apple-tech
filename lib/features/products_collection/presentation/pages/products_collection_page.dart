@@ -18,12 +18,13 @@ class ProductsCollectionPage extends StatelessWidget {
 
     return Scaffold(
       body: SafeArea(
+        bottom: false,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child: CustomScrollView(
             slivers: [
               ProductsCollectionAppBar(tag: tag),
-              const SliverToBoxAdapter(child: SizedBox(height: 24)),
+              const SliverToBoxAdapter(child: SizedBox(height: 14)),
               const SliverToBoxAdapter(child: SearchWidget()),
               const SliverToBoxAdapter(child: SizedBox(height: 16)),
               SliverToBoxAdapter(

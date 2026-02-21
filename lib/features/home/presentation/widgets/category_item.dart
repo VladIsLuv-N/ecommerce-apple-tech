@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:ecommerce_apple_tech_app/features/home/domain/entities/category_entity.dart';
+import 'package:ecommerce_apple_tech_app/core/common/entities/category_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 

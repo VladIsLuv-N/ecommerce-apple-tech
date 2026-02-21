@@ -1,4 +1,4 @@
-import 'package:ecommerce_apple_tech_app/features/home/domain/entities/category_entity.dart';
+import 'package:ecommerce_apple_tech_app/core/common/entities/category_entity.dart';
 import 'package:ecommerce_apple_tech_app/features/home/domain/repositories/home_repository.dart';
 
 class GetCategoriesUsecase {

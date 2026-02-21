@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ecommerce_apple_tech_app/features/home/domain/entities/category_entity.dart';
+import 'package:ecommerce_apple_tech_app/core/common/entities/category_entity.dart';
 
 class CategoryModel extends CategoryEntity {
   CategoryModel({

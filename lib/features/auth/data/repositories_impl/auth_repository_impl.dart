@@ -1,6 +1,7 @@
 import 'package:ecommerce_apple_tech_app/features/auth/data/datasources/auth_remote_datasource.dart';
 import 'package:ecommerce_apple_tech_app/features/auth/domain/entities/user_entity.dart';
 import 'package:ecommerce_apple_tech_app/features/auth/domain/repositories/auth_repository.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDatasource remote;
@@ -43,6 +44,15 @@ class AuthRepositoryImpl implements AuthRepository {
   bool isAuth() {
     try {
       return remote.currentUser() != null;
+    } catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  User? getUser() {
+    try {
+      return remote.currentUser();
     } catch (_) {
       rethrow;
     }

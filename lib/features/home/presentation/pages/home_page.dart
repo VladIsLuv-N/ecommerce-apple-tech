@@ -24,12 +24,17 @@ class HomePage extends StatelessWidget {
           children: [
             const CircleAvatar(radius: 24),
             const SizedBox(width: 16),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Happy Shoping', style: theme.textTheme.bodySmall),
-                Text('Vladislav!', style: theme.textTheme.bodyLarge),
-              ],
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Happy Shoping', style: theme.textTheme.bodySmall),
+                  Text(
+                    (context.read<AuthCubit>().getUser()!.email).toString(),
+                    style: theme.textTheme.bodyLarge,
+                  ),
+                ],
+              ),
             ),
           ],
         ),
@@ -63,9 +68,7 @@ class HomePage extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(height: 25),
-                BannerWidget(
-                  color: Colors.deepOrangeAccent,
-                ),
+                BannerWidget(color: Colors.deepOrangeAccent),
                 SizedBox(height: 30),
                 SearchWidget(),
                 SizedBox(height: 25),
