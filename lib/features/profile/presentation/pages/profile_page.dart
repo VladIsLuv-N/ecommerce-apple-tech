@@ -1,5 +1,4 @@
-import 'dart:convert';
-
+import 'package:ecommerce_apple_tech_app/features/profile/presentation/widgets/profile_header.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -10,38 +9,12 @@ class ProfilePage extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Scaffold(
-      backgroundColor: const Color(0xFFFF6B4A),
+      backgroundColor: theme.colorScheme.primary,
       body: SafeArea(
         bottom: false,
         child: Column(
           children: [
-            SizedBox(
-              height: 185,
-              child: Padding(
-                padding: const EdgeInsets.all(24.0),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Container(
-                          height: 40,
-                          width: 40,
-                          decoration: BoxDecoration(
-                            color: theme.colorScheme.onPrimary,
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          child: Icon(
-                            Icons.arrow_back_rounded,
-                            color: theme.colorScheme.primary,
-                            size: 18,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            const ProfileHeader(),
 
             Expanded(
               child: Container(
