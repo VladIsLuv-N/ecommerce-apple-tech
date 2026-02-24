@@ -12,20 +12,22 @@ class ProductDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: const ProductDetailBottomBar(),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: BlocBuilder<ProductDetailCubit, ProductDetailState>(
-            builder: (context, state) {
-              if (state is ProductDetailLoading) {
-                return const Center(child: CircularProgressIndicator());
-              }
+    return BlocBuilder<ProductDetailCubit, ProductDetailState>(
+      builder: (context, state) {
+        if (state is ProductDetailLoading) {
+          return const Scaffold(
+            body: Center(child: CircularProgressIndicator()),
+          );
+        }
 
-              if (state is ProductDetailLoaded) {
-                final product = state.product;
+        if (state is ProductDetailLoaded) {
+          final product = state.product;
 
-                return Column(
+          return Scaffold(
+            bottomNavigationBar: const ProductDetailBottomBar(),
+            body: SafeArea(
+              child: SingleChildScrollView(
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ProductDetailHeader(images: product.images),
@@ -42,23 +44,23 @@ class ProductDetailPage extends StatelessWidget {
                       specification: product.specification,
                     ),
                   ],
-                );
-              }
+                ),
+              ),
+            ),
+          );
+        }
 
-              if (state is ProductDetailError) {
-                return Center(
-                  child: Text(
-                    state.message,
-                    style: const TextStyle(color: Colors.red),
-                  ),
-                );
-              }
+        if (state is ProductDetailError) {
+          return Center(
+            child: Text(
+              state.message,
+              style: const TextStyle(color: Colors.red),
+            ),
+          );
+        }
 
-              return const SizedBox.shrink();
-            },
-          ),
-        ),
-      ),
+        return const SizedBox.shrink();
+      },
     );
   }
 }

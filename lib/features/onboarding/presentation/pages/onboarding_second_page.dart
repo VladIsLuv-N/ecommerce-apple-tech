@@ -26,6 +26,11 @@ class OnboardingSecondPage extends StatelessWidget {
             ),
             const Spacer(),
             ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor: WidgetStatePropertyAll(
+                  theme.colorScheme.primaryContainer,
+                ),
+              ),
               onPressed: () {
                 context.pop();
               },

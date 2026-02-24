@@ -22,7 +22,12 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Row(
           children: [
-            const CircleAvatar(radius: 24),
+            GestureDetector(
+              onTap: () {
+                context.pushNamed('profile');
+              },
+              child: const CircleAvatar(radius: 24),
+            ),
             const SizedBox(width: 16),
             Expanded(
               child: Column(

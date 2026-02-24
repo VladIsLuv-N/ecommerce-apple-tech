@@ -9,6 +9,7 @@ import 'package:ecommerce_apple_tech_app/features/onboarding/presentation/pages/
 import 'package:ecommerce_apple_tech_app/features/onboarding/presentation/pages/onboarding_third_page.dart';
 import 'package:ecommerce_apple_tech_app/features/products_collection/presentation/pages/product_collection_page_wrapper.dart';
 import 'package:ecommerce_apple_tech_app/features/product_detail/presentation/pages/product_detail_page_wrapper.dart';
+import 'package:ecommerce_apple_tech_app/features/profile/presentation/pages/profile_page_wrapper.dart';
 import 'package:go_router/go_router.dart';
 
 late final GoRouter appRouter;
@@ -59,6 +60,13 @@ void initRouter(AuthCubit cubit) {
         path: '/home',
         name: 'home',
         builder: (context, state) => const HomePageWraper(),
+      ),
+      GoRoute(
+        path: '/profile',
+        name: 'profile',
+        builder: (context, state) {
+          return const ProfilePageWrapper();
+        },
       ),
       GoRoute(
         path: '/product/:id',
