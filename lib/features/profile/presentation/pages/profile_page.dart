@@ -1,3 +1,4 @@
+import 'package:ecommerce_apple_tech_app/features/profile/presentation/widgets/profile_body.dart';
 import 'package:ecommerce_apple_tech_app/features/profile/presentation/widgets/profile_header.dart';
 import 'package:flutter/material.dart';
 
@@ -15,23 +16,7 @@ class ProfilePage extends StatelessWidget {
         child: Column(
           children: [
             const ProfileHeader(),
-
-            Expanded(
-              child: Container(
-                width: double.infinity,
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(24),
-                    topRight: Radius.circular(24),
-                  ),
-                ),
-                child: const SingleChildScrollView(
-                  padding: EdgeInsets.all(16),
-                  child: Column(children: [Text('Контент здесь')]),
-                ),
-              ),
-            ),
+            const ProfileBody(),
           ],
         ),
       ),

@@ -2,7 +2,7 @@ import 'package:ecommerce_apple_tech_app/core/common/entities/category_entity.da
 import 'package:ecommerce_apple_tech_app/features/home/presentation/cubit/home_cubit.dart';
 import 'package:ecommerce_apple_tech_app/features/home/presentation/cubit/home_state.dart';
 import 'package:ecommerce_apple_tech_app/features/home/presentation/widgets/category_item.dart';
-import 'package:ecommerce_apple_tech_app/features/home/presentation/widgets/section_header_widget.dart';
+import 'package:ecommerce_apple_tech_app/core/common/widgets/section_header_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -16,6 +16,7 @@ class CategoriesSection extends StatelessWidget {
       children: [
         SectionHeaderWidget(
           title: 'Our Categories',
+          buttonTitle: 'See All',
           onPressed: () {
             context.pushNamed('categories');
           },

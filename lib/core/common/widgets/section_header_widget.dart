@@ -2,9 +2,15 @@ import 'package:flutter/material.dart';
 
 class SectionHeaderWidget extends StatelessWidget {
   final String title;
+  final String buttonTitle;
   final void Function()? onPressed;
 
-  const SectionHeaderWidget({super.key, required this.title, this.onPressed});
+  const SectionHeaderWidget({
+    super.key,
+    required this.title,
+    this.onPressed,
+    required this.buttonTitle,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +22,7 @@ class SectionHeaderWidget extends StatelessWidget {
         TextButton(
           onPressed: onPressed,
           child: Text(
-            'See All',
+            buttonTitle,
             style: theme.textTheme.labelSmall!.copyWith(fontSize: 16),
           ),
         ),

@@ -2,7 +2,7 @@ import 'package:ecommerce_apple_tech_app/core/common/entities/product_entity.dar
 import 'package:ecommerce_apple_tech_app/core/common/widgets/product_item_widget.dart';
 import 'package:ecommerce_apple_tech_app/features/home/presentation/cubit/home_cubit.dart';
 import 'package:ecommerce_apple_tech_app/features/home/presentation/cubit/home_state.dart';
-import 'package:ecommerce_apple_tech_app/features/home/presentation/widgets/section_header_widget.dart';
+import 'package:ecommerce_apple_tech_app/core/common/widgets/section_header_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -16,6 +16,7 @@ class MostPopularSection extends StatelessWidget {
       children: [
         SectionHeaderWidget(
           title: 'Most Popular',
+          buttonTitle: 'See All',
           onPressed: () {
             context.pushNamed(
               'productsCollection',
