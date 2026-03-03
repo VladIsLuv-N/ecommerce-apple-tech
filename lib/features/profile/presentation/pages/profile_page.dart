@@ -11,14 +11,9 @@ class ProfilePage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: theme.colorScheme.primary,
-      body: SafeArea(
+      body: const SafeArea(
         bottom: false,
-        child: Column(
-          children: [
-            const ProfileHeader(),
-            const ProfileBody(),
-          ],
-        ),
+        child: Column(children: [ProfileHeader(), ProfileBody()]),
       ),
     );
   }

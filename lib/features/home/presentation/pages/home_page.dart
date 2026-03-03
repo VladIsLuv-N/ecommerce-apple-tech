@@ -58,10 +58,7 @@ class HomePage extends StatelessWidget {
             icon: const Icon(Icons.shopping_cart_outlined),
           ),
           IconButton(
-            onPressed: () {
-              context.read<AuthCubit>().signOut();
-              context.goNamed('onboardingFirst');
-            },
+            onPressed: () {},
             icon: const Icon(Icons.notifications_outlined),
           ),
         ],

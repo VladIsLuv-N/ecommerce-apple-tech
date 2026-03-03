@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class AppColorSheme {
   static const light = ColorScheme(
     brightness: Brightness.light,
-    
+
     primary: AppColors.primaryColor,
     onPrimary: AppColors.whiteColor,
 
@@ -17,12 +17,13 @@ class AppColorSheme {
     surface: AppColors.secondaryDarkColor,
     onSurface: AppColors.whiteColor,
 
-    primaryContainer: AppColors.greyDark
+    primaryContainer: AppColors.greyDark,
+    secondaryContainer: AppColors.mainTextColor,
   );
 
   static const dark = ColorScheme(
     brightness: Brightness.light,
-    
+
     primary: AppColors.primaryColor,
     onPrimary: AppColors.whiteColor,
 
