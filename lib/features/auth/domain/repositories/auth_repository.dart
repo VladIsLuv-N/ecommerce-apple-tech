@@ -1,4 +1,4 @@
-import 'package:ecommerce_apple_tech_app/features/auth/domain/entities/user_entity.dart';
+import 'package:ecommerce_apple_tech_app/core/common/entities/user_entity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class AuthRepository {

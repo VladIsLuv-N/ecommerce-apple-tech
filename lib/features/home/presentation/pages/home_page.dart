@@ -26,7 +26,7 @@ class HomePage extends StatelessWidget {
               onTap: () {
                 context.pushNamed('profile');
               },
-              child: const CircleAvatar(radius: 24),
+              child: const CircleAvatar(radius: 24, child: Icon(Icons.person)),
             ),
             const SizedBox(width: 16),
             Expanded(

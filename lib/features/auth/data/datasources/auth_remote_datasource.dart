@@ -1,5 +1,5 @@
-import 'package:ecommerce_apple_tech_app/features/auth/data/models/user_model.dart';
-import 'package:ecommerce_apple_tech_app/features/auth/domain/entities/user_entity.dart';
+import 'package:ecommerce_apple_tech_app/core/common/models/user_model.dart';
+import 'package:ecommerce_apple_tech_app/core/common/entities/user_entity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 

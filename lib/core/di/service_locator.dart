@@ -30,6 +30,11 @@ import 'package:ecommerce_apple_tech_app/features/products_collection/data/repos
 import 'package:ecommerce_apple_tech_app/features/products_collection/domain/usecases/get_collection_prouducts_usecase.dart';
 import 'package:ecommerce_apple_tech_app/features/products_collection/domain/repositories/product_collection_repository.dart';
 import 'package:ecommerce_apple_tech_app/features/products_collection/presentation/cubit/product_collection_cubit.dart';
+import 'package:ecommerce_apple_tech_app/features/profile/data/datasources/profile_remote_datasource.dart';
+import 'package:ecommerce_apple_tech_app/features/profile/data/repository_impl/profile_repository_impl.dart';
+import 'package:ecommerce_apple_tech_app/features/profile/domain/repositories/profile_repositoriy.dart';
+import 'package:ecommerce_apple_tech_app/features/profile/domain/usecases/get_user_usecase.dart';
+import 'package:ecommerce_apple_tech_app/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 
@@ -132,4 +137,17 @@ void initGetIt() {
   getIt.registerFactory(
     () => CategoriesCubit(getCategoriesWithProductsUsecase: getIt()),
   );
+
+  //Profile
+  getIt.registerLazySingleton<ProfileRemoteDatasource>(
+    () => ProfileRemoteDatasourceImpl(firestore: getIt(), auth: getIt()),
+  );
+
+  getIt.registerLazySingleton<ProfileRepositoriy>(
+    () => ProfileRepositoryImpl(remote: getIt()),
+  );
+
+  getIt.registerLazySingleton(() => GetUserUsecase(repositoriy: getIt()));
+
+  getIt.registerFactory(() => ProfileCubit(getUserUsecase: getIt()));
 }

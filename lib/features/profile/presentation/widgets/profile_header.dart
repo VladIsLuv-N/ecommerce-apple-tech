@@ -1,8 +1,11 @@
 import 'package:ecommerce_apple_tech_app/features/profile/presentation/widgets/profile_header_appbar.dart';
 import 'package:flutter/material.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class ProfileHeader extends StatelessWidget {
-  const ProfileHeader({super.key});
+  final String? userName;
+
+  const ProfileHeader({super.key, required this.userName});
 
   @override
   Widget build(BuildContext context) {
@@ -17,13 +20,18 @@ class ProfileHeader extends StatelessWidget {
             const SizedBox(height: 32),
             Row(
               children: [
-                const CircleAvatar(radius: 32),
+                const CircleAvatar(radius: 32, child: Icon(Icons.person)),
                 const SizedBox(width: 16),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: .start,
                     children: [
-                      Text('Hi, Vladilsav', style: theme.textTheme.labelLarge),
+                      userName != null
+                          ? Text(
+                              'Hi, $userName',
+                              style: theme.textTheme.labelLarge,
+                            )
+                          : const Skeletonizer(child: Text('datadata')),
                       const SizedBox(height: 4),
                       Text(
                         'Ready to shop again?',
