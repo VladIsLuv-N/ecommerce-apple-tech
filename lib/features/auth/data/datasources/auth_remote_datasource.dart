@@ -56,6 +56,7 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
         email: email,
         name: name,
         phoneNumber: phoneNumber,
+        favorites: [],
       );
 
       await firestore.collection('users').doc(user.userId).set(user.toJson());

@@ -2,6 +2,7 @@ import 'package:ecommerce_apple_tech_app/features/auth/presentation/cubit/auth_c
 import 'package:ecommerce_apple_tech_app/features/auth/presentation/pages/sign_in_page.dart';
 import 'package:ecommerce_apple_tech_app/features/auth/presentation/pages/sign_up_page.dart';
 import 'package:ecommerce_apple_tech_app/features/categories/presentation/pages/categories_page_wrapper.dart';
+import 'package:ecommerce_apple_tech_app/features/favorites/presentation/pages/favorites_page_wrapper.dart';
 import 'package:ecommerce_apple_tech_app/features/home/presentation/pages/home_page_wraper.dart';
 import 'package:ecommerce_apple_tech_app/features/onboarding/presentation/pages/onboarding_first_page.dart';
 import 'package:ecommerce_apple_tech_app/features/onboarding/presentation/pages/onboarding_layout.dart';
@@ -91,6 +92,13 @@ void initRouter(AuthCubit cubit) {
         name: 'categories',
         builder: (context, state) {
           return const CategoriesPageWrapper();
+        },
+      ),
+      GoRoute(
+        path: '/favorites',
+        name: 'favorites',
+        builder: (context, state) {
+          return const FavoritesPageWrapper();
         },
       ),
     ],

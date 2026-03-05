@@ -32,9 +32,12 @@ class ProfileBody extends StatelessWidget {
               const MyPurchaseSection(),
               const SizedBox(height: 15),
               const MenuItem(title: 'Change password', icon: Icons.key),
-              const MenuItem(
+              MenuItem(
                 title: 'My Wishlist',
                 icon: Icons.favorite_outline,
+                onTap: () {
+                  context.pushNamed('favorites');
+                },
               ),
               const MenuItem(
                 title: 'My Settings',
