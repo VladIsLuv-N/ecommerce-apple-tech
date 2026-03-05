@@ -1,11 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ecommerce_apple_tech_app/core/common/widgets/add_favorite_button.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class ProductDetailHeader extends StatelessWidget {
   final List<String> images;
+  final String productId;
 
-  const ProductDetailHeader({super.key, required this.images});
+  const ProductDetailHeader({
+    super.key,
+    required this.images,
+    required this.productId,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +27,7 @@ class ProductDetailHeader extends StatelessWidget {
         ),
         child: Stack(
           children: [
-            const _AppBarProductDetailHeader(),
+            _AppBarProductDetailHeader(productId: productId),
             _GalleryProductDetailHeader(images: images),
           ],
         ),
@@ -96,7 +102,9 @@ class _GalleryProductDetailHeaderState
 }
 
 class _AppBarProductDetailHeader extends StatelessWidget {
-  const _AppBarProductDetailHeader();
+  final String productId;
+
+  const _AppBarProductDetailHeader({required this.productId});
 
   @override
   Widget build(BuildContext context) {
@@ -123,19 +131,7 @@ class _AppBarProductDetailHeader extends StatelessWidget {
             ),
           ),
           Text('Detail Product', style: theme.textTheme.displayMedium),
-          Container(
-            height: 40,
-            width: 40,
-            decoration: BoxDecoration(
-              color: theme.colorScheme.onPrimary,
-              borderRadius: BorderRadius.circular(30),
-            ),
-            child: Icon(
-              Icons.favorite,
-              color: theme.colorScheme.primary,
-              size: 18,
-            ),
-          ),
+          AddFavoriteButton(productId: productId, size: 40),
         ],
       ),
     );

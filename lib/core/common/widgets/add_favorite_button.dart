@@ -4,9 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddFavoriteButton extends StatelessWidget {
+  final double size;
   final String productId;
 
-  const AddFavoriteButton({super.key, required this.productId});
+  const AddFavoriteButton({
+    super.key,
+    required this.productId,
+    required this.size,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +28,8 @@ class AddFavoriteButton extends StatelessWidget {
             context.read<FavoritesCubit>().toggle(productId);
           },
           child: Container(
-            width: 32,
-            height: 32,
+            width: size,
+            height: size,
             decoration: BoxDecoration(
               color: theme.colorScheme.onPrimary,
               borderRadius: BorderRadius.circular(30),

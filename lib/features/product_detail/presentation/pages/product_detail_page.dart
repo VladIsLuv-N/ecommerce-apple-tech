@@ -30,7 +30,10 @@ class ProductDetailPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    ProductDetailHeader(images: product.images),
+                    ProductDetailHeader(
+                      images: product.images,
+                      productId: product.id,
+                    ),
                     const SizedBox(height: 18),
                     ProductDetailTitleAndRating(
                       title: product.name,

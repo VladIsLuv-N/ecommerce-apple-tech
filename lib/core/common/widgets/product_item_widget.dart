@@ -54,7 +54,7 @@ class ProductItemWidget extends StatelessWidget {
               Positioned(
                 right: 5,
                 top: 5,
-                child: AddFavoriteButton(productId: product.id),
+                child: AddFavoriteButton(productId: product.id, size: 32),
               ),
             ],
           ),
