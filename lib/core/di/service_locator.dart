@@ -17,8 +17,10 @@ import 'package:ecommerce_apple_tech_app/features/favorites/data/datasources/fav
 import 'package:ecommerce_apple_tech_app/features/favorites/data/repositories_impl/favorites_repository_impl.dart';
 import 'package:ecommerce_apple_tech_app/features/favorites/domain/repository/favorites_repository.dart';
 import 'package:ecommerce_apple_tech_app/features/favorites/domain/usecases/get_favorite_ids_usecase.dart';
+import 'package:ecommerce_apple_tech_app/features/favorites/domain/usecases/get_favorites_by_id_usecase.dart';
 import 'package:ecommerce_apple_tech_app/features/favorites/domain/usecases/toggle_favorite_usecase.dart';
 import 'package:ecommerce_apple_tech_app/features/favorites/presentation/cubit/favorites_cubit.dart';
+import 'package:ecommerce_apple_tech_app/features/favorites/presentation/cubit/favorites_screen_cubit.dart';
 import 'package:ecommerce_apple_tech_app/features/home/data/datasources/home_remote_datasource.dart';
 import 'package:ecommerce_apple_tech_app/features/home/data/repositories_impl/home_repository_impl.dart';
 import 'package:ecommerce_apple_tech_app/features/home/domain/repositories/home_repository.dart';
@@ -170,10 +172,21 @@ void initGetIt() {
 
   getIt.registerLazySingleton(() => ToggleFavoriteUsecase(repository: getIt()));
 
-  getIt.registerFactory(
+  getIt.registerLazySingleton(
+    () => GetFavoritesByIdUsecase(repository: getIt()),
+  );
+
+  getIt.registerLazySingleton(
     () => FavoritesCubit(
       getFavoriteIdsUsecase: getIt(),
       toggleFavoriteUsecase: getIt(),
+    ),
+  );
+
+  getIt.registerFactory(
+    () => FavoritesScreenCubit(
+      getFavoritesByIdUsecase: getIt(),
+      favoritesCubit: getIt(),
     ),
   );
 }

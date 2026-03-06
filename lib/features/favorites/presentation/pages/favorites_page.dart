@@ -1,6 +1,9 @@
-import 'package:ecommerce_apple_tech_app/core/common/entities/product_entity.dart';
 import 'package:ecommerce_apple_tech_app/core/common/widgets/product_item_widget.dart';
+import 'package:ecommerce_apple_tech_app/features/favorites/presentation/cubit/favorites_screen_cubit.dart';
+import 'package:ecommerce_apple_tech_app/features/favorites/presentation/cubit/favorites_screen_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
 class FavoritesPage extends StatelessWidget {
@@ -42,36 +45,64 @@ class FavoritesPage extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(24).copyWith(top: 14, bottom: 0),
-        child: GridView.builder(
-          itemCount: 20,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 0.60,
-            crossAxisSpacing: 16,
-            mainAxisSpacing: 16,
-          ),
-          itemBuilder: (context, index) {
-            return ProductItemWidget(
-              width: double.infinity,
-              height: 188,
-              product: ProductEntity(
-                id: '',
-                name: 'Iphone 15 256',
-                description: '',
-                category: '',
-                images: [
-                  'https://i.ibb.co/QFG2k3WC/iphone-15-pro-max-black-1-Photoroom.png',
-                ],
-                specification: {},
-                isAvailable: true,
-                price: 999,
-                rating: 4.6,
-                reviewsCount: 120,
-                stock: 999,
-                tags: [],
-                createdAt: DateTime.now(),
-              ),
-            );
+        child: BlocBuilder<FavoritesScreenCubit, FavoritesScreenState>(
+          builder: (context, state) {
+            if (state is FavoritesScreenError) {
+              return Center(child: Text(state.message));
+            }
+
+            if (state is FavoritesScreenLoading) {
+              return const Center(
+                child: CircularProgressIndicator(color: Colors.red),
+              );
+            }
+
+            if (state is FavoritesScreenEmpty) {
+              return Center(
+                child: Column(
+                  crossAxisAlignment: .center,
+                  mainAxisSize: .min,
+                  children: [
+                    SvgPicture.asset('assets/images/favorites_empty.svg'),
+                    const SizedBox(height: 16),
+                    Text(
+                      'You haven’t added any items to your wishlist yet.',
+                      style: theme.textTheme.displayMedium,
+                      textAlign: .center,
+                    ),
+                  ],
+                ),
+              );
+            }
+
+            if (state is FavoritesScreenLoaded) {
+              return RefreshIndicator(
+                strokeWidth: 3,
+                elevation: 0,
+                backgroundColor: Colors.transparent,
+                onRefresh: () async {
+                  context.read<FavoritesScreenCubit>().load();
+                },
+                child: GridView.builder(
+                  itemCount: state.favorites.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 0.60,
+                    crossAxisSpacing: 16,
+                    mainAxisSpacing: 16,
+                  ),
+                  itemBuilder: (context, index) {
+                    return ProductItemWidget(
+                      width: double.infinity,
+                      height: 188,
+                      product: state.favorites[index],
+                    );
+                  },
+                ),
+              );
+            }
+
+            return const SizedBox.shrink();
           },
         ),
       ),

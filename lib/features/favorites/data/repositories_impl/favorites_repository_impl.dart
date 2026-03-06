@@ -1,3 +1,4 @@
+import 'package:ecommerce_apple_tech_app/core/common/entities/product_entity.dart';
 import 'package:ecommerce_apple_tech_app/features/favorites/data/datasources/favorites_remote_datasource.dart';
 import 'package:ecommerce_apple_tech_app/features/favorites/domain/repository/favorites_repository.dart';
 
@@ -15,4 +16,8 @@ class FavoritesRepositoryImpl implements FavoritesRepository {
   @override
   Future<void> removeFavorite(String productId) =>
       remote.removeFavorite(productId);
+
+  @override
+  Future<List<ProductEntity>> getFavoritesByIds(List<String> ids) =>
+      remote.getFavoritesByIds(ids);
 }
