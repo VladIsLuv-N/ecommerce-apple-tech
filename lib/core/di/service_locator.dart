@@ -184,9 +184,6 @@ void initGetIt() {
   );
 
   getIt.registerFactory(
-    () => FavoritesScreenCubit(
-      getFavoritesByIdUsecase: getIt(),
-      favoritesCubit: getIt(),
-    ),
+    () => FavoritesScreenCubit(getFavoritesByIdUsecase: getIt()),
   );
 }

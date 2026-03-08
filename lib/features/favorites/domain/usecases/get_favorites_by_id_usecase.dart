@@ -6,6 +6,11 @@ class GetFavoritesByIdUsecase {
 
   GetFavoritesByIdUsecase({required this.repository});
 
-  Future<List<ProductEntity>> call(List<String> ids) =>
-      repository.getFavoritesByIds(ids);
+  Stream<List<ProductEntity>> call() {
+    return repository.getFavoriteIds().asyncMap((ids) async {
+      if (ids.isEmpty) return [];
+
+      return await repository.getFavoritesByIds(ids.toList());
+    });
+  }
 }
