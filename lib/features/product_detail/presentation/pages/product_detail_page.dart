@@ -165,7 +165,13 @@ class ProductDetailBottomBar extends StatelessWidget {
                           ),
                         ),
                         state.status == ProductCartStatus.loading
-                            ? const CircularProgressIndicator()
+                            ? const SizedBox(
+                                height: 16,
+                                width: 16,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                ),
+                              )
                             : Text(
                                 state.quantity.toString(),
                                 style: theme.textTheme.displaySmall,

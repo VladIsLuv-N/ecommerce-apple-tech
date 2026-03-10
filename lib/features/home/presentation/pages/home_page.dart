@@ -48,7 +48,11 @@ class HomePage extends StatelessWidget {
             onPressed: () {},
             icon: const Icon(Icons.message_outlined),
           ),
-          ShoppingCartButton(onTap: () {}),
+          ShoppingCartButton(
+            onTap: () {
+              context.pushNamed('cart');
+            },
+          ),
           IconButton(
             onPressed: () {},
             icon: const Icon(Icons.notifications_outlined),
