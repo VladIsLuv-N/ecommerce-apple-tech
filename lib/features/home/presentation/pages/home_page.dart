@@ -1,5 +1,5 @@
 import 'package:ecommerce_apple_tech_app/core/common/widgets/search_widget.dart';
-import 'package:ecommerce_apple_tech_app/admin_page.dart';
+import 'package:ecommerce_apple_tech_app/core/common/widgets/shopping_cart_button.dart';
 import 'package:ecommerce_apple_tech_app/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:ecommerce_apple_tech_app/core/common/widgets/banner_widget.dart';
 import 'package:ecommerce_apple_tech_app/features/home/presentation/widgets/categories_section.dart';
@@ -48,15 +48,7 @@ class HomePage extends StatelessWidget {
             onPressed: () {},
             icon: const Icon(Icons.message_outlined),
           ),
-          IconButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => const AdminPage()),
-              );
-            },
-            icon: const Icon(Icons.shopping_cart_outlined),
-          ),
+          ShoppingCartButton(onTap: () {}),
           IconButton(
             onPressed: () {},
             icon: const Icon(Icons.notifications_outlined),

@@ -8,6 +8,17 @@ import 'package:ecommerce_apple_tech_app/features/auth/domain/usecases/sign_in_u
 import 'package:ecommerce_apple_tech_app/features/auth/domain/usecases/sign_out_usecase.dart';
 import 'package:ecommerce_apple_tech_app/features/auth/domain/usecases/sign_up_usecase.dart';
 import 'package:ecommerce_apple_tech_app/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:ecommerce_apple_tech_app/features/cart/data/datasources/cart_remote_datasource.dart';
+import 'package:ecommerce_apple_tech_app/features/cart/data/repositories_impl/cart_repository_impl.dart';
+import 'package:ecommerce_apple_tech_app/features/cart/domain/repositories/cart_repository.dart';
+import 'package:ecommerce_apple_tech_app/features/cart/domain/usecases/add_item_usecase.dart';
+import 'package:ecommerce_apple_tech_app/features/cart/domain/usecases/clear_cart_usecase.dart';
+import 'package:ecommerce_apple_tech_app/features/cart/domain/usecases/remove_item_usecase.dart';
+import 'package:ecommerce_apple_tech_app/features/cart/domain/usecases/update_quantity_usecase.dart';
+import 'package:ecommerce_apple_tech_app/features/cart/domain/usecases/watch_cart_usecase.dart';
+import 'package:ecommerce_apple_tech_app/features/cart/presentation/cubit/cart_badge_cubit.dart';
+import 'package:ecommerce_apple_tech_app/features/cart/presentation/cubit/cart_cubit.dart';
+import 'package:ecommerce_apple_tech_app/features/cart/presentation/cubit/product_cart_cubit.dart';
 import 'package:ecommerce_apple_tech_app/features/categories/data/datasources/categories_remote_datasource.dart';
 import 'package:ecommerce_apple_tech_app/features/categories/data/repositories_impl/categories_repository_impl.dart';
 import 'package:ecommerce_apple_tech_app/features/categories/domain/repository/categories_repository.dart';
@@ -185,5 +196,39 @@ void initGetIt() {
 
   getIt.registerFactory(
     () => FavoritesScreenCubit(getFavoritesByIdUsecase: getIt()),
+  );
+
+  //Cart
+  getIt.registerLazySingleton<CartRemoteDatasource>(
+    () => CartRemoteDatasourceImpl(firestore: getIt()),
+  );
+
+  getIt.registerLazySingleton<CartRepository>(
+    () => CartRepositoryImpl(remote: getIt()),
+  );
+
+  getIt.registerLazySingleton(() => WatchCartUsecase(repository: getIt()));
+  getIt.registerLazySingleton(() => AddItemUsecase(repository: getIt()));
+  getIt.registerLazySingleton(
+    () => RemoveItemFromCartUsecase(repository: getIt()),
+  );
+  getIt.registerLazySingleton(() => UpdateQuantityUsecase(repository: getIt()));
+  getIt.registerLazySingleton(() => ClearCartUsecase(repository: getIt()));
+
+  getIt.registerLazySingleton(() => CartBadgeCubit(watchCartUsecase: getIt()));
+  getIt.registerFactory(
+    () => ProductCartCubit(
+      watchCartUsecase: getIt(),
+      addItemUsecase: getIt(),
+      updateQuantityUsecase: getIt(),
+    ),
+  );
+  getIt.registerFactory(
+    () => CartCubit(
+      watchCartUsecase: getIt(),
+      updateQuantityUsecase: getIt(),
+      removeItemFromCartUsecase: getIt(),
+      clearCartUsecase: getIt(),
+    ),
   );
 }
