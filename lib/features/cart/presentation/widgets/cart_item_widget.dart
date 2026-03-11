@@ -8,6 +8,7 @@ class CartItemWidget extends StatelessWidget {
   final String title;
   final String imageUrl;
   final int countItem;
+  final double totalPrice;
 
   const CartItemWidget({
     super.key,
@@ -17,6 +18,7 @@ class CartItemWidget extends StatelessWidget {
     required this.title,
     required this.imageUrl,
     required this.countItem,
+    required this.totalPrice,
   });
 
   @override
@@ -34,8 +36,7 @@ class CartItemWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(16),
           ),
           child: CachedNetworkImage(
-            imageUrl:
-                imageUrl,
+            imageUrl: imageUrl,
             errorWidget: (context, url, error) => const Icon(Icons.error),
           ),
         ),
@@ -68,7 +69,7 @@ class CartItemWidget extends StatelessWidget {
               Row(
                 children: [
                   GestureDetector(
-                    onTap: increment,
+                    onTap: decrement,
                     child: Container(
                       height: 24,
                       width: 24,
@@ -87,7 +88,7 @@ class CartItemWidget extends StatelessWidget {
                   Text('$countItem', style: theme.textTheme.bodyLarge),
                   const SizedBox(width: 16),
                   GestureDetector(
-                    onTap: decrement,
+                    onTap: increment,
                     child: Container(
                       height: 24,
                       width: 24,
@@ -99,6 +100,15 @@ class CartItemWidget extends StatelessWidget {
                         Icons.add_rounded,
                         color: theme.colorScheme.onPrimary,
                         size: 20,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Text(
+                      '\$$totalPrice',
+                      textAlign: .end,
+                      style: theme.textTheme.bodyLarge!.copyWith(
+                        fontWeight: .w400,
                       ),
                     ),
                   ),

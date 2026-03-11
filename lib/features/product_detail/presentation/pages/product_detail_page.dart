@@ -9,6 +9,7 @@ import 'package:ecommerce_apple_tech_app/features/product_detail/presentation/wi
 import 'package:ecommerce_apple_tech_app/features/product_detail/presentation/widgets/product_detail_title_and_rating.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class ProductDetailPage extends StatelessWidget {
   const ProductDetailPage({super.key});
@@ -31,7 +32,7 @@ class ProductDetailPage extends StatelessWidget {
         builder: (context, state) {
           if (state is ProductDetailLoading) {
             return const Scaffold(
-              body: Center(child: CircularProgressIndicator()),
+              body: Center(child: CircularProgressIndicator(color: Colors.red)),
             );
           }
 
@@ -209,10 +210,15 @@ class ProductDetailBottomBar extends StatelessWidget {
                     borderRadius: BorderRadius.circular(30),
                     border: Border.all(color: theme.colorScheme.primary),
                   ),
-                  child: Icon(
-                    Icons.shopping_cart_outlined,
-                    color: theme.colorScheme.primary,
-                    size: 20,
+                  child: IconButton(
+                    onPressed: () {
+                      context.pushNamed('cart');
+                    },
+                    icon: Icon(
+                      Icons.shopping_cart_outlined,
+                      color: theme.colorScheme.primary,
+                      size: 20,
+                    ),
                   ),
                 ),
               ],
