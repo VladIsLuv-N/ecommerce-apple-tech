@@ -6,28 +6,36 @@ class ProgressLineWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final partWidth = MediaQuery.sizeOf(context).width / 3;
     final theme = Theme.of(context);
 
-    return Stack(
-      children: [
-        Container(
-          height: 8,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: theme.colorScheme.secondary,
-            borderRadius: BorderRadius.circular(30),
-          ),
-        ),
-        Container(
-          height: 8,
-          width: partWidth * progressLine,
-          decoration: BoxDecoration(
-            color: theme.colorScheme.primary,
-            borderRadius: BorderRadius.circular(30),
-          ),
-        ),
-      ],
+    return LayoutBuilder(
+      builder: (context, constrains) {
+        final totalWidth = constrains.maxWidth;
+        final partWidth = totalWidth / 3;
+
+        return Stack(
+          children: [
+            Container(
+              height: 8,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: theme.colorScheme.secondary,
+                borderRadius: BorderRadius.circular(30),
+              ),
+            ),
+            AnimatedContainer(
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.easeOut,
+              height: 8,
+              width: partWidth * progressLine,
+              decoration: BoxDecoration(
+                color: theme.colorScheme.primary,
+                borderRadius: BorderRadius.circular(30),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }
