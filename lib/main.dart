@@ -1,6 +1,7 @@
 import 'package:ecommerce_apple_tech_app/apple_tech_app.dart';
 import 'package:ecommerce_apple_tech_app/core/di/service_locator.dart';
 import 'package:ecommerce_apple_tech_app/core/router/app_router.dart';
+import 'package:ecommerce_apple_tech_app/core/services/notification/notification_service.dart';
 import 'package:ecommerce_apple_tech_app/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:ecommerce_apple_tech_app/features/favorites/presentation/cubit/favorites_cubit.dart';
 import 'package:ecommerce_apple_tech_app/firebase_options.dart';
@@ -12,7 +13,10 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   initGetIt();
+
+  await getIt<NotificationService>().init();
 
   final authCubit = getIt<AuthCubit>();
 
