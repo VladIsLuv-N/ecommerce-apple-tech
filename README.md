@@ -57,7 +57,7 @@ lib/
 ### 1. Clone
 
 ```bash
-git clone https://github.com/your-username/your-repo.git
+git clone https://github.com/VladIsLuv-N/ecommerce-apple-tech.git
 cd your-repo
 ```
 
