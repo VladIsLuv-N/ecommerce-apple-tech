@@ -6,7 +6,7 @@
 
 ## 🎥 Demo
 
-![Simulator Screen Recording - iPhone 16e - 2026-03-15 at 23 49 24](https://github.com/user-attachments/assets/a34f126a-a343-447c-87f1-c66d61f76335)
+<img src="assets/demo.gif" width="300"/>
 
 ---
 
