@@ -1,34 +1,27 @@
-# 🛒 Flutter eCommerce App
+# 🛒 eCommerce Apple Tech
 
-> Полноценное eCommerce-приложение с каталогом товаров, корзиной и оформлением заказа.
-
----
-
-## 📱 Screenshots
-
-| Home | Product | Cart | Checkout |
-| ---- | ------- | ---- | -------- |
-|      |         |      |          |
+> Apple Tech - app with a catalog of Apple products, a shopping cart, favorites, and push notifications.
 
 ---
 
 ## 🎥 Demo
 
-* 📦 APK: [Download](#)
-* 🎬 Video: [Watch Demo](#)
+//////////
 
 ---
 
 ## ✨ Features
 
-* 🔐 Authentication (Email / Google / Firebase)
-* 🛍️ Каталог товаров
-* 🔎 Поиск и фильтрация
+* 🔐 Authentication (Email)
+* 🛍️ Product catalogs
 * ❤️ Wishlist
-* 🛒 Корзина
-* 💳 Checkout (mock / Stripe)
+* 🛒 Cart
+
+Planned:
+* 💳 Checkout (mock)
 * 🌙 Dark mode
 * 🌍 Localization (если есть)
+* 🔎 Search and filtering
 
 ---
 
@@ -36,44 +29,45 @@
 
 * **Framework:** Flutter
 * **Language:** Dart
-* **State Management:** Bloc / Riverpod / Provider
-* **Backend:** Firebase / REST API
-* **Database:** Firestore / SQLite / Hive
+* **State Management:** Cubit
+* **Navigation:** Go router
+* **DI:** GetIt
+* **Backend:** Firebase
+* **Database:** Firestore
 * **Architecture:** Clean Architecture
 
 ---
 
 ## 🏗 Architecture
 
-Проект построен с использованием **Clean Architecture** и разделён на слои:
+The project was built using **Clean Architecture(features first)** :
 
 ```bash
 lib/
- ├── core/           # общие утилиты, темы, константы
- ├── features/       # фичи (auth, cart, product)
- ├── data/           # API, модели, репозитории
- ├── domain/         # бизнес-логика (если есть)
- └── presentation/   # UI (screens, widgets)
+ ├── core/           # common utilities, themes, constants, di, router
+ ├── features/       # auth, cart, product...
+ ├── apple_tech_app.dart 
+ └── main.dart 
 ```
 
 ---
 
 ## 🚀 Getting Started
 
-### 1. Клонировать репозиторий
+### 1. Clone
 
 ```bash
 git clone https://github.com/your-username/your-repo.git
 cd your-repo
 ```
 
-### 2. Установить зависимости
+### 2. Install dependencies
 
 ```bash
 flutter pub get
 ```
 
-### 3. Запустить проект
+### 3. Run project
 
 ```bash
 flutter run
@@ -81,79 +75,3 @@ flutter run
 
 ---
 
-## 🔐 Environment Variables
-
-Создай `.env` файл в корне проекта:
-
-```env
-API_URL=your_api_url
-API_KEY=your_api_key
-```
-
----
-
-## 🧪 Tests
-
-```bash
-flutter test
-```
-
-Примеры тестов:
-
-* Business logic (Bloc / UseCases)
-* API layer
-* Widget tests
-
----
-
-## 💡 Challenges & Solutions
-
-### 🚧 Challenges
-
-* Медленная загрузка списка товаров
-* Управление состоянием корзины
-* Работа с асинхронными API
-
-### ✅ Solutions
-
-* Pagination + lazy loading
-* Использование Bloc/Riverpod
-* Repository pattern + caching
-
----
-
-## 📦 Build APK
-
-```bash
-flutter build apk
-```
-
----
-
-## 🗺 Roadmap
-
-* [ ] Добавить оплату (Stripe / PayPal)
-* [ ] Улучшить UI/UX
-* [ ] Добавить push-уведомления
-* [ ] Offline mode
-
----
-
-## 🤝 Contributing
-
-Pull requests приветствуются. Для серьёзных изменений сначала открой issue.
-
----
-
-## 📄 License
-
-MIT License
-
----
-
-## 👨‍💻 Author
-
-* GitHub: https://github.com/your-username
-* LinkedIn: https://linkedin.com/in/your-profile
-
----
